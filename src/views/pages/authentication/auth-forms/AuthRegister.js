@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -77,9 +78,14 @@ const FirebaseRegister = ({ ...others }) => {
           email: Yup.string().email('Veuillez saisir une adresse e-mail valide').max(255).required("L'adresse e-mail est requise"),
           password: Yup.string().max(255).required('Le mot de passe est requis')
         })}
-        onSubmit={async ({ setErrors, setStatus, setSubmitting }) => {
+        onSubmit={async ({email, password, setErrors, setStatus, setSubmitting }) => {
           try {
             if (scriptedRef.current) {
+              const response = await axios.post('URL__ENDPOINT_PYTHON', {
+                email,
+                password
+              });
+              console.log('Réponse du serveur:', response.data);
               setStatus({ success: true });
               setSubmitting(false);
             }
