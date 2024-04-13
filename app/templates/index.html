@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Interface</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h1>Choose Options:</h1>
+
+    <form id="userForm">
+        <label for="objective">Objective:</label>
+        <select id="objective" name="objective">
+            <option value="lose weight">Lose Weight</option>
+            <option value="build muscle">Build Muscle</option>
+            <option value="improve endurance">Improve Endurance</option>
+        </select>
+
+        <br>
+
+        <label for="ingredients">Ingredients:</label>
+        <div id="ingredients">
+            <input type="checkbox" id="tomato" name="ingredients" value="tomato">
+            <label for="tomato">Tomato</label>
+
+            <input type="checkbox" id="milk" name="ingredients" value="milk">
+            <label for="milk">Milk</label>
+
+            <input type="checkbox" id="pepper" name="ingredients" value="pepper">
+            <label for="pepper">Pepper</label>
+
+            <input type="checkbox" id="chickenBreast" name="ingredients" value="chicken breast">
+            <label for="chickenBreast">Chicken Breast</label>
+
+            <input type="checkbox" id="oatmeal" name="ingredients" value="oatmeal">
+            <label for="oatmeal">Oatmeal</label>
+
+            <input type="checkbox" id="eggs" name="ingredients" value="eggs">
+            <label for="eggs">Eggs</label>
+
+            <input type="checkbox" id="yogurt" name="ingredients" value="yogurt with proteins">
+            <label for="yogurt">Yogurt with Proteins</label>
+
+            <input type="checkbox" id="blackChocolate" name="ingredients" value="black chocolate">
+            <label for="blackChocolate">Black Chocolate</label>
+
+            <input type="checkbox" id="sheepMeat" name="ingredients" value="sheep meat">
+            <label for="sheepMeat">Sheep Meat</label>
+
+            <input type="checkbox" id="onion" name="ingredients" value="onion">
+            <label for="onion">Onion</label>
+
+            <input type="checkbox" id="pasta" name="ingredients" value="pasta">
+            <label for="pasta">Pasta</label>
+
+            <input type="checkbox" id="rice" name="ingredients" value="rice">
+            <label for="rice">Rice</label>
+
+            <input type="checkbox" id="broccoli" name="ingredients" value="broccoli">
+            <label for="broccoli">Broccoli</label>
+
+            <input type="checkbox" id="spinach" name="ingredients" value="spinach">
+            <label for="spinach">Spinach</label>
+
+            <input type="checkbox" id="sweetPotato" name="ingredients" value="sweet potato">
+            <label for="sweetPotato">Sweet Potato</label>
+
+            <input type="checkbox" id="quinoa" name="ingredients" value="quinoa">
+            <label for="quinoa">Quinoa</label>
+
+            <input type="checkbox" id="salmon" name="ingredients" value="salmon">
+            <label for="salmon">Salmon</label>
+
+            <input type="checkbox" id="avocado" name="ingredients" value="avocado">
+            <label for="avocado">Avocado</label>
+
+            <input type="checkbox" id="nuts" name="ingredients" value="nuts">
+            <label for="nuts">Nuts</label>
+
+            <input type="checkbox" id="cottageCheese" name="ingredients" value="cottage cheese">
+            <label for="cottageCheese">Cottage Cheese</label>
+        </div>
+
+        <br>
+
+        <label for="materials">Materials:</label>
+        <div id="materials">
+            <input type="checkbox" id="bench" name="materials" value="bench">
+            <label for="bench">Bench</label>
+
+            <input type="checkbox" id="dumbbell" name="materials" value="dumbbell">
+            <label for="dumbbell">Dumbbell</label>
+
+            <input type="checkbox" id="yogaMat" name="materials" value="yoga mat">
+            <label for="yogaMat">Yoga Mat</label>
+
+            <input type="checkbox" id="kettlebell" name="materials" value="kettlebell">
+            <label for="kettlebell">Kettlebell</label>
+
+            <input type="checkbox" id="jumpRope" name="materials" value="jump rope">
+            <label for="jumpRope">Jump Rope</label>
+
+            <input type="checkbox" id="resistanceBands" name="materials" value="resistance bands">
+            <label for="resistanceBands">Resistance Bands</label>
+
+            <input type="checkbox" id="medicineBall" name="materials" value="medicine ball">
+            <label for="medicineBall">Medicine Ball</label>
+        </div>
+
+        <br>
+
+        <label for="trainingTimes">Training Times per Week:</label>
+        <select id="trainingTimes" name="trainingTimes">
+            <option value="1">1 time</option>
+            <option value="2">2 times</option>
+            <option value="3">3 times</option>
+            <option value="4">4 times</option>
+            <option value="5">5 times</option>
+            <option value="6">6 times</option>
+            <option value="7">7 times</option>
+        </select>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+     <script>
+        function submitForm() {
+            var userChoices = {
+                objective: $("#objective").val(),
+                ingredients: [],
+                materials: [],
+                trainingTimes: $("#trainingTimes").val(),
+            };
+
+            // Loop through selected ingredients checkboxes
+            $("#ingredients input:checked").each(function () {
+                userChoices.ingredients.push($(this).val());
+            });
+
+            // Loop through selected materials checkboxes
+            $("#materials input:checked").each(function () {
+                userChoices.materials.push($(this).val());
+            });
+
+            console.log(userChoices);
+
+            var requestData = {
+                question: userChoices
+            };
+
+            console.log(requestData);
+
+            // Use AJAX to send the data to your Flask endpoint
+            $.ajax({
+                url: "http://localhost:5000/handle-query",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(requestData),
+                success: function(response) {
+                    console.log("fffff");
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log("eeee");
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+

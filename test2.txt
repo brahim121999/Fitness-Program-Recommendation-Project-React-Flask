@@ -1,0 +1,112 @@
+```json
+[
+    {
+        "training_sessions_day_by_day": {
+            "Monday": [
+                {
+                    "exercise": "Jump rope",
+                    "frequency": "3 times per week"
+                },
+                {
+                    "exercise": "Dumbbell squats",
+                    "frequency": "3 times per week"
+                },
+                {
+                    "exercise": "Yoga mat core exercises",
+                    "frequency": "3 times per week"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "exercise": "Kettlebell swings",
+                    "frequency": "3 times per week"
+                },
+                {
+                    "exercise": "Jump rope",
+                    "frequency": "3 times per week"
+                },
+                {
+                    "exercise": "Dumbbell lunges",
+                    "frequency": "3 times per week"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "exercise": "Yoga mat stretching",
+                    "frequency": "3 times per week"
+                },
+                {
+                    "exercise": "Jump rope",
+                    "frequency": "3 times per week"
+                },
+                {
+                    "exercise": "Kettlebell squats",
+                    "frequency": "3 times per week"
+                }
+            ]
+        }
+    },
+    {
+        "how_to_perform_exercises": {
+            "Jump rope": "Perform a continuous sequence of jumping over the rope for 1 minute, rest, and repeat for desired sets.",
+            "Dumbbell squats": "Hold dumbbells at your sides, stand with feet shoulder-width apart, squat down, keeping back straight, and return to standing position.",
+            "Yoga mat core exercises": "Include exercises like planks, Russian twists, and bicycle crunches on the yoga mat.",
+            "Kettlebell swings": "Hold the kettlebell with both hands, hinge at the hips, swing the kettlebell forward and up to shoulder height.",
+            "Dumbbell lunges": "Hold dumbbells in each hand, step forward with one leg, lower the body until both knees are bent, and return to standing.",
+            "Yoga mat stretching": "Perform various static stretches targeting different muscle groups."
+        }
+    },
+    {
+        "meals": {
+            "Monday": [
+                "Breakfast: Oatmeal with sliced hard-boiled eggs",
+                "Lunch: Greek yogurt with diced vegetables",
+                "Dinner: Grilled chicken with steamed broccoli"
+            ],
+            "Tuesday": [
+                "Breakfast: Yogurt with protein and black chocolate shavings",
+                "Lunch: Quinoa salad with boiled eggs",
+                "Dinner: Baked salmon with roasted asparagus"
+            ],
+            "Wednesday": [
+                "Breakfast: Scrambled eggs with sautéed spinach",
+                "Lunch: Grilled chicken and mixed berry salad",
+                "Dinner: Stir-fried tofu with vegetables"
+            ],
+            "Thursday": [
+                "Breakfast: Greek yogurt parfait with oatmeal and black chocolate chunks",
+                "Lunch: Egg salad with avocado dressing",
+                "Dinner: Lentil soup with a side of boiled eggs"
+            ],
+            "Friday": [
+                "Breakfast: Omelette with yogurt and dark chocolate chips",
+                "Lunch: Quinoa-stuffed peppers",
+                "Dinner: Grilled turkey breast with steamed vegetables"
+            ],
+            "Saturday": [
+                "Breakfast: Yogurt bowl with fruit and granola",
+                "Lunch: Tuna salad with boiled eggs",
+                "Dinner: Baked chicken with roasted sweet potatoes"
+            ],
+            "Sunday": [
+                "Breakfast: Protein smoothie bowl topped with dark chocolate shavings",
+                "Lunch: Greek yogurt chicken salad",
+                "Dinner: Lentil curry with boiled eggs"
+            ]
+        }
+    },
+    {
+        "how_to_prepare_meals": {
+            "Oatmeal with sliced hard-boiled eggs": "Cook oatmeal as per package instructions, peel and slice hard-boiled eggs on top.",
+            "Yogurt with protein and black chocolate shavings": "Mix yogurt with protein powder and top with shaved black chocolate.",
+            "Scrambled eggs with sautéed spinach": "Scramble eggs in a pan, sauté spinach separately and mix together.",
+            "Greek yogurt with diced vegetables": "Combine Greek yogurt with diced cucumbers, tomatoes, and bell peppers.",
+            "Baked salmon with roasted asparagus": "Season salmon fillets, bake in oven, and roast asparagus with olive oil and seasonings.",
+            "Stir-fried tofu with vegetables": "Stir-fry tofu and assorted vegetables in a pan with seasonings.",
+            "Egg salad with avocado dressing": "Boil and chop eggs, mix with mashed avocado to create a creamy dressing for the salad.",
+            "Quinoa-stuffed peppers": "Cook quinoa, mix with veggies, stuff into bell peppers, and bake until tender.",
+            "Protein smoothie bowl topped with dark chocolate shavings": "Blend protein powder, fruits, and yogurt, pour into a bowl, and sprinkle with dark chocolate shavings."
+        }
+    }
+]
+```  
