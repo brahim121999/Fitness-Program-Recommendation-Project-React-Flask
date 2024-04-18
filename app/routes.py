@@ -11,28 +11,7 @@ from app.utils.helper_functions import chunk_text, build_prompt
 PINECONE_INDEX_NAME = 'bob7'
 
 
-@api_blueprint.route('/handle-query', methods=['POST'])
-def handle_query():
-    start_time = time.time()
 
-    question = request.json['question']
-
-    context_chunks = pinecone_service.get_most_similar_chunks_for_query(question, PINECONE_INDEX_NAME)
-
-    prompt = build_prompt(question, context_chunks)
-
-    answer = openai_service.get_llm_answer(prompt)
-
-    end_time = time.time()
-
-    execution_time = end_time - start_time
-
-    print(f"Execution time: {execution_time} seconds")
-
-    with open("test2.txt", "w") as my_file:
-        my_file.write(answer)
-
-    return jsonify({"question": question, "answer": answer})
 
 
 """
