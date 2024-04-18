@@ -1,12 +1,23 @@
-from flask import Flask
+"""
+main module of the server file
+"""
+from config import Config
+from app import app, db
+from dotenv import load_dotenv
 
-app = Flask(__name__)
+load_dotenv()
+
+#app = app
 
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+@app.before_first_request
+def create_tables():
+    print("Creating database tables...")
+    db.create_all()
+    print("Done!")
 
 
 if __name__ == '__main__':
-    app.run()
+    # app.run(debug=Config.DEBUG)
+    app.secret_key = Config.SECRET_KEY
+    app.run(host='0.0.0.0', port=8087, debug=True)
