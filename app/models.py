@@ -24,112 +24,67 @@ class User(BaseModel):
     name = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
+    weight = db.Column(db.Float)
+    height = db.Column(db.Float)
+    contact = db.Column(db.String(100))
+    address = db.Column(db.String(255))
     sessions = db.relationship('Session', backref='user', lazy=True)
+    equipments = db.relationship('Equipment', backref='user', lazy=True)
+    menus = db.relationship('Menu', backref='user', lazy=True)
 
-    def __init__(self, name, email, password, **kwargs):
+    def __init__(self, name, email, password, weight=None, height=None, contact=None, address=None, **kwargs):
         super().__init__(**kwargs)
         self.name = name
         self.email = email
         self.password = password
+        self.weight = weight
+        self.height = height
+        self.contact = contact
+        self.address = address
 
 
 class Session(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    date = db.Column(db.Date)
-    objectives = db.relationship('Objective', backref='session', lazy=True)
-    equipments = db.relationship('Equipment', backref='session', lazy=True)
-    programs = db.relationship('Program', backref='session', lazy=True)
+    programme = db.Column(db.Text)
 
-    def __init__(self, user_id, date, **kwargs):
+    def __init__(self, user_id, programme=None, **kwargs):
         super().__init__(**kwargs)
         self.user_id = user_id
-        self.date = date
-
-
-class Objective(BaseModel):
-    id = db.Column(db.Integer, primary_key=True)
-    session_id = db.Column(db.Integer, db.ForeignKey('session.id'), nullable=False)
-    type = db.Column(db.String(100))
-
-    def __init__(self, session_id, type, **kwargs):
-        super().__init__(**kwargs)
-        self.session_id = session_id
-        self.type = type
+        self.programme = programme
 
 
 class Equipment(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
-    session_id = db.Column(db.Integer, db.ForeignKey('session.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     description = db.Column(db.String(255))
-    type = db.Column(db.String(100))
 
-    def __init__(self, session_id, description, type, **kwargs):
+    def __init__(self, user_id, description, **kwargs):
         super().__init__(**kwargs)
-        self.session_id = session_id
+        self.user_id = user_id
         self.description = description
-        self.type = type
-
-
-class Program(BaseModel):
-    id = db.Column(db.Integer, primary_key=True)
-    session_id = db.Column(db.Integer, db.ForeignKey('session.id'), nullable=False)
-    details = db.Column(db.String(255))
-
-    def __init__(self, session_id, details, **kwargs):
-        super().__init__(**kwargs)
-        self.session_id = session_id
-        self.details = details
-
-
-class Dish(BaseModel):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    category = db.Column(db.String(100))
-    objectives = db.relationship('Objective', secondary='dish_objectives', backref='dishes', lazy='dynamic')
-
-    def __init__(self, name, category, **kwargs):
-        super().__init__(**kwargs)
-        self.name = name
-        self.category = category
-
-
-dish_objectives = db.Table('dish_objectives',
-                           db.Column('dish_id', db.Integer, db.ForeignKey('dish.id')),
-                           db.Column('objective_id', db.Integer, db.ForeignKey('objective.id'))
-                           )
 
 
 class Menu(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     name = db.Column(db.String(100))
-    dishes = db.relationship('Dish', secondary='menu_dishes', backref='menus', lazy='dynamic')
+    how_to_prepare = db.Column(db.Text)
+    ingredients = db.relationship('Ingredient', backref='menu', lazy=True)
 
-    def __init__(self, name, **kwargs):
+    def __init__(self, user_id, name, how_to_prepare=None, **kwargs):
         super().__init__(**kwargs)
+        self.user_id = user_id
         self.name = name
-
-
-menu_dishes = db.Table('menu_dishes',
-                       db.Column('menu_id', db.Integer, db.ForeignKey('menu.id')),
-                       db.Column('dish_id', db.Integer, db.ForeignKey('dish.id'))
-                       )
+        self.how_to_prepare = how_to_prepare
 
 
 class Ingredient(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
+    menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'), nullable=False)
     name = db.Column(db.String(100))
-    calories = db.Column(db.Float)
-    carbohydrates = db.Column(db.Float)
-    fats = db.Column(db.Float)
-    proteins = db.Column(db.Float)
-    menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'))
 
-    def __init__(self, name, calories, carbohydrates, fats, proteins, menu_id, **kwargs):
+    def __init__(self, menu_id, name, **kwargs):
         super().__init__(**kwargs)
-        self.name = name
-        self.calories = calories
-        self.carbohydrates = carbohydrates
-        self.fats = fats
-        self.proteins = proteins
         self.menu_id = menu_id
+        self.name = name
