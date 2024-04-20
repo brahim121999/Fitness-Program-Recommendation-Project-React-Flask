@@ -28,11 +28,12 @@ class User(BaseModel):
     height = db.Column(db.Float)
     contact = db.Column(db.String(100))
     address = db.Column(db.String(255))
+    objective = db.Column(db.String(255))
     sessions = db.relationship('Session', backref='user', lazy=True)
     equipments = db.relationship('Equipment', backref='user', lazy=True)
     menus = db.relationship('Menu', backref='user', lazy=True)
 
-    def __init__(self, name, email, password, weight=None, height=None, contact=None, address=None, **kwargs):
+    def __init__(self, name, email, password, weight=None, height=None, contact=None, address=None, objective=None, **kwargs):
         super().__init__(**kwargs)
         self.name = name
         self.email = email
@@ -41,6 +42,7 @@ class User(BaseModel):
         self.height = height
         self.contact = contact
         self.address = address
+        self.objective = objective
 
 
 class Session(BaseModel):

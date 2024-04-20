@@ -1,18 +1,12 @@
-from flask import Blueprint, request, jsonify, make_response, render_template
-from app.schema import *
-from app.models import *
+from flask import Blueprint, request, jsonify, make_response
+from app.models import db, User, Session, Equipment, Menu, Ingredient
+from app.schema import user_schema, users_schema, session_schema, sessions_schema, equipment_schema, equipments_schema, \
+    menu_schema, menus_schema, ingredient_schema, ingredients_schema
+from . import app
+#from werkzeug.security import generate_password_hash, check_password_hash
+#from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
-import time
-from . import api_blueprint, app
-from flask import request, jsonify
-from app.services import openai_service, pinecone_service, scraping_service
-from app.utils.helper_functions import chunk_text, build_prompt
-
-PINECONE_INDEX_NAME = 'bob7'
-
-
-
-
+api_blueprint = Blueprint('api', __name__)
 
 """
 ===========================
@@ -142,69 +136,9 @@ def delete_session(id):
         return make_response(jsonify({'message': 'Invalid Session ID!', 'status': 404}))
 
 
-"""
-===========================
-Endpoints for Objective CRUD
-===========================
-"""
+# Other CRUD endpoints for Equipment, Menu, Ingredient, etc. can be similarly defined here...
 
-
-# Endpoint to CREATE objective
-@app.route("/objective", methods=["POST"])
-def create_objective():
-    data = request.json
-    new_objective = Objective(**data)
-    db.session.add(new_objective)
-    db.session.commit()
-    result = objective_schema.dump(new_objective)
-    return make_response(jsonify({'message': 'New Objective Created!', 'status': 201, 'data': result}))
-
-
-# Endpoint to GET all objectives
-@app.route("/objective", methods=["GET"])
-def get_objectives():
-    all_objectives = Objective.query.all()
-    result = objectives_schema.dump(all_objectives)
-    return make_response(jsonify({'message': 'All Objectives!', 'status': 200, 'data': result}))
-
-
-# Endpoint to GET objective detail by id
-@app.route("/objective/<int:id>", methods=["GET"])
-def get_objective(id):
-    objective = Objective.query.get(id)
-    if objective:
-        result = objective_schema.dump(objective)
-        return make_response(jsonify({'message': 'Objective Info!', 'status': 200, 'data': result}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Objective ID!', 'status': 404}))
-
-
-# Endpoint to UPDATE objective
-@app.route("/objective/<int:id>", methods=["PATCH"])
-def update_objective(id):
-    objective = Objective.query.get(id)
-    if objective:
-        data = request.json
-        for key, value in data.items():
-            setattr(objective, key, value)
-        db.session.commit()
-        result = objective_schema.dump(objective)
-        return make_response(jsonify({'message': 'Objective Info Edited!', 'status': 200, 'data': result}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Objective ID!', 'status': 404}))
-
-
-# Endpoint to DELETE objective
-@app.route("/objective/<int:id>", methods=["DELETE"])
-def delete_objective(id):
-    objective = Objective.query.get(id)
-    if objective:
-        db.session.delete(objective)
-        db.session.commit()
-        return make_response(jsonify({'message': 'Objective Deleted!', 'status': 200}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Objective ID!', 'status': 404}))
-
+# Other CRUD endpoints for Equipment, Menu, Ingredient, etc. can be similarly defined here...
 
 """
 ===========================
@@ -268,134 +202,6 @@ def delete_equipment(id):
         return make_response(jsonify({'message': 'Equipment Deleted!', 'status': 200}))
     else:
         return make_response(jsonify({'message': 'Invalid Equipment ID!', 'status': 404}))
-
-
-"""
-===========================
-Endpoints for Program CRUD
-===========================
-"""
-
-
-# Endpoint to CREATE program
-@app.route("/program", methods=["POST"])
-def create_program():
-    data = request.json
-    new_program = Program(**data)
-    db.session.add(new_program)
-    db.session.commit()
-    result = program_schema.dump(new_program)
-    return make_response(jsonify({'message': 'New Program Created!', 'status': 201, 'data': result}))
-
-
-# Endpoint to GET all programs
-@app.route("/program", methods=["GET"])
-def get_programs():
-    all_programs = Program.query.all()
-    result = programs_schema.dump(all_programs)
-    return make_response(jsonify({'message': 'All Programs!', 'status': 200, 'data': result}))
-
-
-# Endpoint to GET program detail by id
-@app.route("/program/<int:id>", methods=["GET"])
-def get_program(id):
-    program = Program.query.get(id)
-    if program:
-        result = program_schema.dump(program)
-        return make_response(jsonify({'message': 'Program Info!', 'status': 200, 'data': result}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Program ID!', 'status': 404}))
-
-
-# Endpoint to UPDATE program
-@app.route("/program/<int:id>", methods=["PATCH"])
-def update_program(id):
-    program = Program.query.get(id)
-    if program:
-        data = request.json
-        for key, value in data.items():
-            setattr(program, key, value)
-        db.session.commit()
-        result = program_schema.dump(program)
-        return make_response(jsonify({'message': 'Program Info Edited!', 'status': 200, 'data': result}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Program ID!', 'status': 404}))
-
-
-# Endpoint to DELETE program
-@app.route("/program/<int:id>", methods=["DELETE"])
-def delete_program(id):
-    program = Program.query.get(id)
-    if program:
-        db.session.delete(program)
-        db.session.commit()
-        return make_response(jsonify({'message': 'Program Deleted!', 'status': 200}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Program ID!', 'status': 404}))
-
-
-"""
-===========================
-Endpoints for Dish CRUD
-===========================
-"""
-
-
-# Endpoint to CREATE dish
-@app.route("/dish", methods=["POST"])
-def create_dish():
-    data = request.json
-    new_dish = Dish(**data)
-    db.session.add(new_dish)
-    db.session.commit()
-    result = dish_schema.dump(new_dish)
-    return make_response(jsonify({'message': 'New Dish Created!', 'status': 201, 'data': result}))
-
-
-# Endpoint to GET all dishes
-@app.route("/dish", methods=["GET"])
-def get_dishes():
-    all_dishes = Dish.query.all()
-    result = dishes_schema.dump(all_dishes)
-    return make_response(jsonify({'message': 'All Dishes!', 'status': 200, 'data': result}))
-
-
-# Endpoint to GET dish detail by id
-@app.route("/dish/<int:id>", methods=["GET"])
-def get_dish(id):
-    dish = Dish.query.get(id)
-    if dish:
-        result = dish_schema.dump(dish)
-        return make_response(jsonify({'message': 'Dish Info!', 'status': 200, 'data': result}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Dish ID!', 'status': 404}))
-
-
-# Endpoint to UPDATE dish
-@app.route("/dish/<int:id>", methods=["PATCH"])
-def update_dish(id):
-    dish = Dish.query.get(id)
-    if dish:
-        data = request.json
-        for key, value in data.items():
-            setattr(dish, key, value)
-        db.session.commit()
-        result = dish_schema.dump(dish)
-        return make_response(jsonify({'message': 'Dish Info Edited!', 'status': 200, 'data': result}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Dish ID!', 'status': 404}))
-
-
-# Endpoint to DELETE dish
-@app.route("/dish/<int:id>", methods=["DELETE"])
-def delete_dish(id):
-    dish = Dish.query.get(id)
-    if dish:
-        db.session.delete(dish)
-        db.session.commit()
-        return make_response(jsonify({'message': 'Dish Deleted!', 'status': 200}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Dish ID!', 'status': 404}))
 
 
 """
@@ -515,6 +321,7 @@ def update_ingredient(id):
 
 
 # Endpoint to DELETE ingredient
+# Endpoint to DELETE ingredient
 @app.route("/ingredient/<int:id>", methods=["DELETE"])
 def delete_ingredient(id):
     ingredient = Ingredient.query.get(id)
@@ -524,3 +331,25 @@ def delete_ingredient(id):
         return make_response(jsonify({'message': 'Ingredient Deleted!', 'status': 200}))
     else:
         return make_response(jsonify({'message': 'Invalid Ingredient ID!', 'status': 404}))
+
+# Endpoint for user login
+#@app.route("/login", methods=["POST"])
+#def login():
+ #   data = request.json
+  #  email = data.get('email')
+   # password = data.get('password')
+
+    #user = User.query.filter_by(email=email).first()
+
+    #if user and check_password_hash(user.password, password):
+     #   access_token = create_access_token(identity=email)
+      #  return make_response(jsonify({'access_token': access_token}), 200)
+    #else:
+     #   return make_response(jsonify({'message': 'Invalid email or password'}), 401)
+
+# Protected route example
+#@app.route("/protected", methods=["GET"])
+#@jwt_required()
+#def protected():
+#   current_user = get_jwt_identity()
+ #   return jsonify(logged_in_as=current_user), 200

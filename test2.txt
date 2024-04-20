@@ -1,0 +1,39 @@
+{
+  "objective": "build muscle",
+  "training_sessions_day_by_day": {
+    "Monday": ["Dumbbell Squats", "Kettlebell Swings", "Dumbbell Chest Press"],
+    "Wednesday": ["Yoga mat core workout", "Dumbbell Deadlifts", "Kettlebell Rows"],
+    "Friday": ["Kettlebell Goblet Squat", "Dumbbell Shoulder Press", "Mat Planks"]
+  },
+  "how_to_perform_exercises": {
+    "Dumbbell Squats": "Stand with feet hip-width apart, dumbbells at your shoulders. Bend knees and lower into a squat, keeping knees behind toes. Stand to return to starting position.",
+    "Kettlebell Swings": "Stand with feet shoulder-width apart, kettlebell in front of you. Bend at the hips to grip kettlebell, then swing it between your legs. Straighten hips to swing kettlebell up to chest level, then back down.",
+    "Dumbbell Chest Press": "Lie on the floor, knees bent, dumbbells in hands extended above chest. Lower dumbbells to chest level, then press back up.",
+    "Yoga mat core workout": "Various exercises such as sit-ups, bicycle crunches, and leg raises performed on the yoga mat.",
+    "Dumbbell Deadlifts": "Stand with feet hip-width apart, dumbbells in front of thighs. Bend at hips and knees to lower dumbbells to the ground, keeping back straight. Return to standing.",
+    "Kettlebell Rows": "Bend forward at the waist holding a kettlebell in one hand. Pull the kettlebell towards your waist, pausing at the top, then lower.",
+    "Kettlebell Goblet Squat": "Hold kettlebell by the horns close to your chest. Squat down by bending knees, keeping back straight. Stand back up.",
+    "Dumbbell Shoulder Press": "Sit or stand with dumbbells at shoulders. Press dumbbells overhead, then lower back to shoulders.",
+    "Mat Planks": "Position yourself in a plank on the yoga mat, maintaining a straight body line. Hold the position."
+  },
+  "meals": {
+    "Monday": ["Chicken breast pepper stir-fry", "Milk"],
+    "Tuesday": ["Grilled chicken with pepper slices", "Milk shake"],
+    "Wednesday": ["Pepper stuffed with minced chicken", "Milk"],
+    "Thursday": ["Chicken and pepper kebabs", "Milk shake"],
+    "Friday": ["Chicken salad with fresh pepper", "Milk"],
+    "Saturday": ["Sautéed chicken with peppers", "Milk shake"],
+    "Sunday": ["Roasted chicken with pepper garnish", "Milk"]
+  },
+  "how_to_prepare_meals": {
+    "Chicken breast pepper stir-fry": "Slice chicken breast and peppers. Stir-fry in a pan until chicken is cooked.",
+    "Milk shake": "Blend milk with a few ice cubes and any available flavor or sweetener.",
+    "Grilled chicken with pepper slices": "Grill chicken breast whole and serve with raw or lightly sautéed pepper slices.",
+    "Pepper stuffed with minced chicken": "Hollow out peppers, stuff with minced chicken and bake.",
+    "Chicken and pepper kebabs": "Skewer chicken pieces and pepper pieces alternately and grill.",
+    "Chicken salad with fresh pepper": "Chop cooked chicken and raw peppers, mix with a simple dressing.",
+    "Sautéed chicken with peppers": "Sauté chicken pieces with sliced peppers until done.",
+    "Roasted chicken with pepper garnish": "Roast whole chicken with slices of pepper around it."
+  },
+  "ingredients": ["milk", "pepper", "chicken breast"]
+}
