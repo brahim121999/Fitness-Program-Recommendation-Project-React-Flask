@@ -33,7 +33,6 @@ def handle_query():
     # Convert the answer JSON string to a dictionary
     api_response = json.loads(answer)
 
-
     user_id = 1
 
     # Objective
