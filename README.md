@@ -10,6 +10,11 @@ Currently, two official plugins are available:
 
 ## Running the App
 
+* Install dependencies
+```
+npm i
+```
+
 * Run the app
 ```
 npm run dev
