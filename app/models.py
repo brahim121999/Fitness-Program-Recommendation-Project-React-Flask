@@ -49,11 +49,13 @@ class Session(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     programme = db.Column(db.Text)
+    day = db.Column(db.Text)
 
-    def __init__(self, user_id, programme=None, **kwargs):
+    def __init__(self, user_id, programme=None,day=None, **kwargs):
         super().__init__(**kwargs)
         self.user_id = user_id
         self.programme = programme
+        self.day = day
 
 
 class Equipment(BaseModel):
@@ -71,22 +73,35 @@ class Menu(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     name = db.Column(db.String(100))
-    how_to_prepare = db.Column(db.Text)
-    ingredients = db.relationship('Ingredient', backref='menu', lazy=True)
-
-    def __init__(self, user_id, name, how_to_prepare=None, **kwargs):
+    #how_to_prepare = db.Column(db.Text)
+    #menu_ingredients_relation = db.relationship('MenuIngredient', backref='menu', lazy=True)
+    day = db.Column(db.Text)
+    type = db.Column(db.Text) #breakfast or lunch or dinner
+    def __init__(self, user_id, name, how_to_prepare=None,day=None,type=None, **kwargs):
         super().__init__(**kwargs)
         self.user_id = user_id
         self.name = name
-        self.how_to_prepare = how_to_prepare
+        self.day = day
+        self.type = type
+
 
 
 class Ingredient(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
-    menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'), nullable=False)
     name = db.Column(db.String(100))
+    #menu_ingredients_relation = db.relationship('MenuIngredient', backref='ingredient', lazy=True)
 
-    def __init__(self, menu_id, name, **kwargs):
+    def __init__(self, name, **kwargs):
         super().__init__(**kwargs)
-        self.menu_id = menu_id
         self.name = name
+
+
+#class MenuIngredient(BaseModel):
+ #   __tablename__ = 'menu_ingredient'
+  #  id = db.Column(db.Integer, primary_key=True)
+   # menu_id = db.Column(db.Integer, db.ForeignKey('menu.id'), nullable=False)
+    #ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredient.id'), nullable=False)
+
+    #menu_relation = db.relationship('Menu', backref=db.backref('menu_ingredients', cascade='all, delete-orphan'))
+    #ingredient_relation = db.relationship('Ingredient', backref=db.backref('menu_ingredients', cascade='all, delete-orphan'))
+

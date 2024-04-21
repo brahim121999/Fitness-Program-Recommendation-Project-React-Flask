@@ -30,15 +30,11 @@ def handle_query():
     with open("test2.txt", "w") as my_file:
         my_file.write(answer)
 
-    #print(f"Type of answer: {type(answer)}")
-
     # Convert the answer JSON string to a dictionary
     api_response = json.loads(answer)
 
-    print(api_response)
 
-    # Parse the API response
-    user_id = 1  # Assuming user_id is known or can be determined from the context
+    user_id = 1
 
     # Objective
     objective = api_response.get('objective', '')
@@ -49,42 +45,63 @@ def handle_query():
 
     # Training Sessions and Exercises
     training_sessions = api_response.get('training_sessions_day_by_day', {})
-    how_to_perform_exercises = api_response.get('how_to_perform_exercises', {})
+
 
     for day, exercises in training_sessions.items():
-        # Create session entry
-        session = Session(user_id=user_id, programme=day)
-        db.session.add(session)
+        # Check if the session already exists
+        session_exists = Session.query.filter_by(user_id=user_id, day=day, programme=str(exercises)).first()
+        if not session_exists:
+            # Create session entry
+            session = Session(user_id=user_id, day=day, programme=str(exercises))
+            db.session.add(session)
 
-        # Create equipment entries and descriptions
-        for exercise in exercises:
-            description = how_to_perform_exercises.get(exercise, '')
-            equipment = Equipment(user_id=user_id, description=description)
+    equipment = api_response.get('equipment', {})
+    for i in equipment:
+        # Check if the equipment already exists
+        equipment_exists = Equipment.query.filter_by(user_id=user_id, description=i).first()
+        if not equipment_exists:
+            equipment = Equipment(user_id=user_id, description=i)
             db.session.add(equipment)
 
     # Meals
     meals = api_response.get('meals', {})
-    how_to_prepare_meals = api_response.get('how_to_prepare_meals', {})
+    ingredients = api_response.get('ingredients', [])  # Get all ingredients
+
+    for ingredient_name in ingredients:
+        # Check if the ingredient already exists
+        ingredient_exists = Ingredient.query.filter_by(name=ingredient_name).first()
+        if not ingredient_exists:
+            # Create ingredient entry
+            ingredient = Ingredient(name=ingredient_name)
+            db.session.add(ingredient)
 
     for day, meals_info in meals.items():
         for meal_time, meal_name in meals_info.items():
-            # Create menu entry
-            how_to_prepare = how_to_prepare_meals.get(meal_name, '')
-            menu = Menu(user_id=user_id, name=meal_name, how_to_prepare=how_to_prepare)
-            db.session.add(menu)
+            # Check if the menu already exists
+            menu_exists = Menu.query.filter_by(user_id=user_id, name=meal_name, day=day, type=meal_time).first()
+            if not menu_exists:
+                # Create menu entry
+                menu = Menu(user_id=user_id, name=meal_name, day=day, type=meal_time)
+                db.session.add(menu)
 
-            # Assuming you also want to store the ingredients for each meal
-            # Assuming ingredients can be determined and are in a list form
-
-            ingredients = api_response.get('ingredients', {})
-
-            for ingredient_name in ingredients:
-                ingredient = Ingredient(menu_id=menu.id, name=ingredient_name)
-                db.session.add(ingredient)
+                # Store ingredients for each meal
+                # meal_ingredients = ingredients  # Get ingredients for this meal
+                # for ingredient_name in meal_ingredients:
+                #     # Create ingredient entry
+                #     ingredient = Ingredient(name=ingredient_name)
+                #     db.session.add(ingredient)
+                #     db.session.commit()  # Commit here to get the ingredient id
+                #
+                #     # Create MenuIngredient entry
+                #     menu_ingredient = MenuIngredient(menu_id=menu.id, ingredient_id=ingredient.id)
+                #     db.session.add(menu_ingredient)
 
     # Commit changes to the database
     db.session.commit()
 
     # Return response
     return jsonify({"question": question, "answer": answer, "status": "Data saved to database successfully"})
+
+
+
 

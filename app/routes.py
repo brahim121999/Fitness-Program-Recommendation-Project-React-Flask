@@ -204,42 +204,23 @@ def delete_equipment(id):
         return make_response(jsonify({'message': 'Invalid Equipment ID!', 'status': 404}))
 
 
-"""
-===========================
-Endpoints for Menu CRUD
-===========================
-"""
-
-
 # Endpoint to CREATE menu
 @app.route("/menu", methods=["POST"])
 def create_menu():
     data = request.json
     new_menu = Menu(**data)
+
+    # If ingredients are provided, associate them with the menu
+    if 'ingredients' in data:
+        for ingredient_id in data['ingredients']:
+            ingredient = Ingredient.query.get(ingredient_id)
+            if ingredient:
+                new_menu.ingredients.append(ingredient)
+
     db.session.add(new_menu)
     db.session.commit()
     result = menu_schema.dump(new_menu)
     return make_response(jsonify({'message': 'New Menu Created!', 'status': 201, 'data': result}))
-
-
-# Endpoint to GET all menus
-@app.route("/menu", methods=["GET"])
-def get_menus():
-    all_menus = Menu.query.all()
-    result = menus_schema.dump(all_menus)
-    return make_response(jsonify({'message': 'All Menus!', 'status': 200, 'data': result}))
-
-
-# Endpoint to GET menu detail by id
-@app.route("/menu/<int:id>", methods=["GET"])
-def get_menu(id):
-    menu = Menu.query.get(id)
-    if menu:
-        result = menu_schema.dump(menu)
-        return make_response(jsonify({'message': 'Menu Info!', 'status': 200, 'data': result}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Menu ID!', 'status': 404}))
-
 
 # Endpoint to UPDATE menu
 @app.route("/menu/<int:id>", methods=["PATCH"])
@@ -247,14 +228,24 @@ def update_menu(id):
     menu = Menu.query.get(id)
     if menu:
         data = request.json
+
+        # Update menu fields
         for key, value in data.items():
             setattr(menu, key, value)
+
+        # Handle ingredients association
+        if 'ingredients' in data:
+            menu.ingredients.clear()  # Clear existing associations
+            for ingredient_id in data['ingredients']:
+                ingredient = Ingredient.query.get(ingredient_id)
+                if ingredient:
+                    menu.ingredients.append(ingredient)
+
         db.session.commit()
         result = menu_schema.dump(menu)
         return make_response(jsonify({'message': 'Menu Info Edited!', 'status': 200, 'data': result}))
     else:
         return make_response(jsonify({'message': 'Invalid Menu ID!', 'status': 404}))
-
 
 # Endpoint to DELETE menu
 @app.route("/menu/<int:id>", methods=["DELETE"])
@@ -267,43 +258,23 @@ def delete_menu(id):
     else:
         return make_response(jsonify({'message': 'Invalid Menu ID!', 'status': 404}))
 
-
-"""
-===========================
-Endpoints for Ingredient CRUD
-===========================
-"""
-
-
 # Endpoint to CREATE ingredient
 @app.route("/ingredient", methods=["POST"])
 def create_ingredient():
     data = request.json
     new_ingredient = Ingredient(**data)
+
+    # If menus are provided, associate the ingredient with them
+    if 'menus' in data:
+        for menu_id in data['menus']:
+            menu = Menu.query.get(menu_id)
+            if menu:
+                new_ingredient.menus.append(menu)
+
     db.session.add(new_ingredient)
     db.session.commit()
     result = ingredient_schema.dump(new_ingredient)
     return make_response(jsonify({'message': 'New Ingredient Created!', 'status': 201, 'data': result}))
-
-
-# Endpoint to GET all ingredients
-@app.route("/ingredient", methods=["GET"])
-def get_ingredients():
-    all_ingredients = Ingredient.query.all()
-    result = ingredients_schema.dump(all_ingredients)
-    return make_response(jsonify({'message': 'All Ingredients!', 'status': 200, 'data': result}))
-
-
-# Endpoint to GET ingredient detail by id
-@app.route("/ingredient/<int:id>", methods=["GET"])
-def get_ingredient(id):
-    ingredient = Ingredient.query.get(id)
-    if ingredient:
-        result = ingredient_schema.dump(ingredient)
-        return make_response(jsonify({'message': 'Ingredient Info!', 'status': 200, 'data': result}))
-    else:
-        return make_response(jsonify({'message': 'Invalid Ingredient ID!', 'status': 404}))
-
 
 # Endpoint to UPDATE ingredient
 @app.route("/ingredient/<int:id>", methods=["PATCH"])
@@ -311,16 +282,25 @@ def update_ingredient(id):
     ingredient = Ingredient.query.get(id)
     if ingredient:
         data = request.json
+
+        # Update ingredient fields
         for key, value in data.items():
             setattr(ingredient, key, value)
+
+        # Handle menus association
+        if 'menus' in data:
+            ingredient.menus.clear()  # Clear existing associations
+            for menu_id in data['menus']:
+                menu = Menu.query.get(menu_id)
+                if menu:
+                    ingredient.menus.append(menu)
+
         db.session.commit()
         result = ingredient_schema.dump(ingredient)
         return make_response(jsonify({'message': 'Ingredient Info Edited!', 'status': 200, 'data': result}))
     else:
         return make_response(jsonify({'message': 'Invalid Ingredient ID!', 'status': 404}))
 
-
-# Endpoint to DELETE ingredient
 # Endpoint to DELETE ingredient
 @app.route("/ingredient/<int:id>", methods=["DELETE"])
 def delete_ingredient(id):
@@ -331,6 +311,7 @@ def delete_ingredient(id):
         return make_response(jsonify({'message': 'Ingredient Deleted!', 'status': 200}))
     else:
         return make_response(jsonify({'message': 'Invalid Ingredient ID!', 'status': 404}))
+
 
 # Endpoint for user login
 #@app.route("/login", methods=["POST"])

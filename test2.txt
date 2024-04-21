@@ -1,39 +1,99 @@
 {
   "objective": "build muscle",
   "training_sessions_day_by_day": {
-    "Monday": ["Dumbbell Squats", "Kettlebell Swings", "Dumbbell Chest Press"],
-    "Wednesday": ["Yoga mat core workout", "Dumbbell Deadlifts", "Kettlebell Rows"],
-    "Friday": ["Kettlebell Goblet Squat", "Dumbbell Shoulder Press", "Mat Planks"]
-  },
-  "how_to_perform_exercises": {
-    "Dumbbell Squats": "Stand with feet hip-width apart, dumbbells at your shoulders. Bend knees and lower into a squat, keeping knees behind toes. Stand to return to starting position.",
-    "Kettlebell Swings": "Stand with feet shoulder-width apart, kettlebell in front of you. Bend at the hips to grip kettlebell, then swing it between your legs. Straighten hips to swing kettlebell up to chest level, then back down.",
-    "Dumbbell Chest Press": "Lie on the floor, knees bent, dumbbells in hands extended above chest. Lower dumbbells to chest level, then press back up.",
-    "Yoga mat core workout": "Various exercises such as sit-ups, bicycle crunches, and leg raises performed on the yoga mat.",
-    "Dumbbell Deadlifts": "Stand with feet hip-width apart, dumbbells in front of thighs. Bend at hips and knees to lower dumbbells to the ground, keeping back straight. Return to standing.",
-    "Kettlebell Rows": "Bend forward at the waist holding a kettlebell in one hand. Pull the kettlebell towards your waist, pausing at the top, then lower.",
-    "Kettlebell Goblet Squat": "Hold kettlebell by the horns close to your chest. Squat down by bending knees, keeping back straight. Stand back up.",
-    "Dumbbell Shoulder Press": "Sit or stand with dumbbells at shoulders. Press dumbbells overhead, then lower back to shoulders.",
-    "Mat Planks": "Position yourself in a plank on the yoga mat, maintaining a straight body line. Hold the position."
+    "Monday": {
+      "Exercises": [
+        {
+          "Name": "Kettlebell Swings",
+          "Description": "Stand with your feet shoulder-width apart, holding the kettlebell with both hands. Bend your knees slightly, hinge at your hips to swing the kettlebell between your legs, then thrust your hips forward to swing the kettlebell up to shoulder height. Repeat."
+        },
+        {
+          "Name": "Jump Rope",
+          "Description": "Use the jump rope for a cardiovascular workout. Start slowly and gradually increase your speed to maintain a consistent pace. Aim to jump rope for 10-15 minutes."
+        },
+        {
+          "Name": "Russian Twists with Kettlebell",
+          "Description": "Sit on the ground with your knees bent and feet flat. Hold the kettlebell with both hands in front of your chest. Lean back slightly and lift your feet off the floor. Twist your torso to the right, then to the left to complete one rep."
+        }
+      ]
+    },
+    "Wednesday": {
+      "Exercises": [
+        {
+          "Name": "Kettlebell Goblet Squat",
+          "Description": "Hold the kettlebell close to your chest with both hands. Spread your feet to slightly wider than shoulder-width apart. Squat down, keeping your back straight and chest up. Push through your heels to return to the starting position."
+        },
+        {
+          "Name": "Jump Rope - High Knees",
+          "Description": "Perform the jump rope exercise focusing on lifting your knees as high as possible in a running in place manner."
+        },
+        {
+          "Name": "Kettlebell One-arm Press",
+          "Description": "Stand with feet shoulder-width apart. Hold the kettlebell in one hand and press it overhead, locking out your elbow. Lower it back down to your shoulder slowly. Complete all reps on one side before switching to the other arm."
+        }
+      ]
+    },
+    "Friday": {
+      "Exercises": [
+        {
+          "Name": "Kettlebell Deadlift",
+          "Description": "Place the kettlebell between your feet, hinge at your hips and bend your knees slightly to grab the kettlebell. Keep your back flat and look straight ahead as you stand up, lifting the kettlebell. Lower it back down to the ground."
+        },
+        {
+          "Name": "Jump Rope - Criss Cross",
+          "Description": "Perform the jump rope by crossing your arms in front of you as the rope comes down, and uncrossing them as you jump over the rope."
+        },
+        {
+          "Name": "Kettlebell Lunge Press",
+          "Description": "Step forward into a lunge position holding the kettlebell at your chest. As you lunge down, press the kettlebell above your head. Return to the start and repeat on the other side."
+        }
+      ]
+    }
   },
   "meals": {
-    "Monday": ["Chicken breast pepper stir-fry", "Milk"],
-    "Tuesday": ["Grilled chicken with pepper slices", "Milk shake"],
-    "Wednesday": ["Pepper stuffed with minced chicken", "Milk"],
-    "Thursday": ["Chicken and pepper kebabs", "Milk shake"],
-    "Friday": ["Chicken salad with fresh pepper", "Milk"],
-    "Saturday": ["Sautéed chicken with peppers", "Milk shake"],
-    "Sunday": ["Roasted chicken with pepper garnish", "Milk"]
+    "Monday": {
+      "Breakfast": "Scrambled eggs with diced chicken breast and sliced avocado",
+      "Lunch": "Grilled chicken breast with sliced avocado and black pepper",
+      "Dinner": "Chicken breast stir-fried with pepper and avocado slices"
+    },
+    "Tuesday": {
+      "Breakfast": "Avocado toast with peppered chicken strips",
+      "Lunch": "Chicken salad with avocado cubes and ground pepper",
+      "Dinner": "Roasted chicken breast with a side of mashed avocado and cracked pepper"
+    },
+    "Wednesday": {
+      "Breakfast": "Chicken omelette with avocado and a pinch of pepper",
+      "Lunch": "Avocado chicken wrap sprinkled with black pepper",
+      "Dinner": "Pan-seared chicken with avocado slices and pepper"
+    },
+    "Thursday": {
+      "Breakfast": "Chicken and avocado quesadilla with a sprinkle of pepper",
+      "Lunch": "Chicken avocado salad with pepper dressing",
+      "Dinner": "Grilled chicken with a side of avocado puree and pepper"
+    },
+    "Friday": {
+      "Breakfast": "Eggs baked in avocado with chicken strips",
+      "Lunch": "Chicken and avocado skewers seasoned with pepper",
+      "Dinner": "Shredded chicken with avocado topping and a dash of pepper"
+    },
+    "Saturday": {
+      "Breakfast": "Avocado stuffed with chicken salad and pepper",
+      "Lunch": "Cold chicken breast slices with avocado dip and pepper",
+      "Dinner": "Spicy chicken stir-fry with avocado and pepper"
+    },
+    "Sunday": {
+      "Breakfast": "Avocado and chicken scramble with ground pepper",
+      "Lunch": "Stuffed avocados with shredded chicken and pepper",
+      "Dinner": "Chicken pepper roast with creamy avocado sauce"
+    }
   },
-  "how_to_prepare_meals": {
-    "Chicken breast pepper stir-fry": "Slice chicken breast and peppers. Stir-fry in a pan until chicken is cooked.",
-    "Milk shake": "Blend milk with a few ice cubes and any available flavor or sweetener.",
-    "Grilled chicken with pepper slices": "Grill chicken breast whole and serve with raw or lightly sautéed pepper slices.",
-    "Pepper stuffed with minced chicken": "Hollow out peppers, stuff with minced chicken and bake.",
-    "Chicken and pepper kebabs": "Skewer chicken pieces and pepper pieces alternately and grill.",
-    "Chicken salad with fresh pepper": "Chop cooked chicken and raw peppers, mix with a simple dressing.",
-    "Sautéed chicken with peppers": "Sauté chicken pieces with sliced peppers until done.",
-    "Roasted chicken with pepper garnish": "Roast whole chicken with slices of pepper around it."
-  },
-  "ingredients": ["milk", "pepper", "chicken breast"]
+  "ingredients": [
+    "pepper",
+    "chicken breast",
+    "avocado"
+  ],
+  "equipment": [
+    "kettlebell",
+    "jump rope"
+  ]
 }

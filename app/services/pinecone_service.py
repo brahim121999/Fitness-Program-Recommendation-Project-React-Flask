@@ -5,10 +5,7 @@ from pinecone import Pinecone, ServerlessSpec
 import time
 from app.utils.helper_functions import chunk_text
 
-PINECONE_API_KEY = os.environ.get('PINCONE_API_KEY')
 
-# make sure to enter your actual Pinecone environment
-pinecone = Pinecone("e2d6b2b9-c4b2-460b-b982-cfd5d03f3504")
 
 EMBEDDING_DIMENSION = 1536
 

@@ -47,8 +47,8 @@ def build_prompt(query, context_chunks):
         "week from monday to sunday) the meals should be different for the 7 days and can be prepared only using the list of ingredients "
         "given."
         "And ensure that the meals align with the fitness objective. Lastly, provide instructions on how to prepare each meal."
-        "Give me the whole answer in json format put only the json data dont write json at the begining : {objective : the objective given as input by the user }, {training_sessions_day_by_day : ...}, {how_to_perform_exercises : ...}, "
-        "{meals : ...},{how_to_prepare_meals:....}, {ingredients : the ingredients chosen by the user}"
+        "Give me the whole answer in json format put only the json data dont write json at the begining : {objective : the objective given as input by the user }, {training_sessions_day_by_day : the exercice and explain how each one should be performed}, "
+        "{meals : the meal and description how to prepare it}, {ingredients : the ingredients chosen by the user},{equipment : the equipment given by the user}"
     )
     prompt_end = (
         f"\n\nQuestion: {query}\nAnswer:"
