@@ -18,6 +18,7 @@ const MainRoutes = {
       path: '/',
       element: <WelcomePage />
     },
+
     {
       path: '/',
       children: [
