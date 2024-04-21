@@ -1,99 +1,72 @@
 {
   "objective": "build muscle",
   "training_sessions_day_by_day": {
-    "Monday": {
-      "Exercises": [
-        {
-          "Name": "Kettlebell Swings",
-          "Description": "Stand with your feet shoulder-width apart, holding the kettlebell with both hands. Bend your knees slightly, hinge at your hips to swing the kettlebell between your legs, then thrust your hips forward to swing the kettlebell up to shoulder height. Repeat."
-        },
-        {
-          "Name": "Jump Rope",
-          "Description": "Use the jump rope for a cardiovascular workout. Start slowly and gradually increase your speed to maintain a consistent pace. Aim to jump rope for 10-15 minutes."
-        },
-        {
-          "Name": "Russian Twists with Kettlebell",
-          "Description": "Sit on the ground with your knees bent and feet flat. Hold the kettlebell with both hands in front of your chest. Lean back slightly and lift your feet off the floor. Twist your torso to the right, then to the left to complete one rep."
-        }
-      ]
-    },
-    "Wednesday": {
-      "Exercises": [
-        {
-          "Name": "Kettlebell Goblet Squat",
-          "Description": "Hold the kettlebell close to your chest with both hands. Spread your feet to slightly wider than shoulder-width apart. Squat down, keeping your back straight and chest up. Push through your heels to return to the starting position."
-        },
-        {
-          "Name": "Jump Rope - High Knees",
-          "Description": "Perform the jump rope exercise focusing on lifting your knees as high as possible in a running in place manner."
-        },
-        {
-          "Name": "Kettlebell One-arm Press",
-          "Description": "Stand with feet shoulder-width apart. Hold the kettlebell in one hand and press it overhead, locking out your elbow. Lower it back down to your shoulder slowly. Complete all reps on one side before switching to the other arm."
-        }
-      ]
-    },
-    "Friday": {
-      "Exercises": [
-        {
-          "Name": "Kettlebell Deadlift",
-          "Description": "Place the kettlebell between your feet, hinge at your hips and bend your knees slightly to grab the kettlebell. Keep your back flat and look straight ahead as you stand up, lifting the kettlebell. Lower it back down to the ground."
-        },
-        {
-          "Name": "Jump Rope - Criss Cross",
-          "Description": "Perform the jump rope by crossing your arms in front of you as the rope comes down, and uncrossing them as you jump over the rope."
-        },
-        {
-          "Name": "Kettlebell Lunge Press",
-          "Description": "Step forward into a lunge position holding the kettlebell at your chest. As you lunge down, press the kettlebell above your head. Return to the start and repeat on the other side."
-        }
-      ]
-    }
+    "Monday": [
+      {
+        "exercise": "Kettlebell Swings",
+        "description": "Stand with feet shoulder-width apart. Hold the kettlebell with both hands in front of you. Swing the kettlebell between your legs while bending your hips then thrusting forward to swing it to chest height. Keep your arms straight and core tight. Perform 3 sets of 15 reps."
+      },
+      {
+        "exercise": "Medicine Ball Slams",
+        "description": "Stand with your feet shoulder-width apart holding a medicine ball above your head. Slam the ball down on the ground in front of you as hard as you can, engaging your core. Squat to pick up the ball and return to the starting position. Perform 3 sets of 12 reps."
+      },
+      {
+        "exercise": "Jump Rope",
+        "description": "Use the jump rope for a cardio interval. Jump continuously at a steady pace for 1-2 minutes. Aim for 3 intervals with a 30-second rest in between."
+      }
+    ],
+    "Thursday": [
+      {
+        "exercise": "Kettlebell Goblet Squats",
+        "description": "Hold the kettlebell close to your chest with both hands, feet just wider than shoulder-width apart. Squat down, keeping your chest up and knees tracking over toes. Drive through your heels to stand up. Perform 3 sets of 15 reps."
+      },
+      {
+        "exercise": "Medicine Ball Russian Twists",
+        "description": "Sit on the floor with knees bent and feet flat, holding the medicine ball with both hands. Lean back slightly and lift your feet off the ground. Rotate your torso and the ball to the right, then to the left, to complete one rep. Do 3 sets of 20 twists."
+      },
+      {
+        "exercise": "Jump Rope",
+        "description": "Use the jump rope to perform high-intensity intervals. Jump as fast as you can for 30 seconds followed by 30 seconds of rest. Repeat for 5 rounds."
+      }
+    ]
   },
   "meals": {
     "Monday": {
-      "Breakfast": "Scrambled eggs with diced chicken breast and sliced avocado",
-      "Lunch": "Grilled chicken breast with sliced avocado and black pepper",
-      "Dinner": "Chicken breast stir-fried with pepper and avocado slices"
+      "Breakfast": "Oatmeal with chopped nuts and black chocolate",
+      "Lunch": "Grilled chicken breast seasoned with pepper and a side of cottage cheese",
+      "Dinner": "Baked salmon with a pepper crust, served with a side of steamed vegetables"
     },
     "Tuesday": {
-      "Breakfast": "Avocado toast with peppered chicken strips",
-      "Lunch": "Chicken salad with avocado cubes and ground pepper",
-      "Dinner": "Roasted chicken breast with a side of mashed avocado and cracked pepper"
+      "Breakfast": "Scrambled eggs with pepper and oatmeal",
+      "Lunch": "Salmon salad with nuts and a sprinkle of black chocolate shavings",
+      "Dinner": "Chicken breast stir-fry with mixed vegetables and nuts"
     },
     "Wednesday": {
-      "Breakfast": "Chicken omelette with avocado and a pinch of pepper",
-      "Lunch": "Avocado chicken wrap sprinkled with black pepper",
-      "Dinner": "Pan-seared chicken with avocado slices and pepper"
+      "Breakfast": "Oatmeal pancakes with a dark chocolate and nut topping",
+      "Lunch": "Spicy pepper chicken wraps with leafy greens",
+      "Dinner": "Cottage cheese stuffed peppers topped with crushed nuts"
     },
     "Thursday": {
-      "Breakfast": "Chicken and avocado quesadilla with a sprinkle of pepper",
-      "Lunch": "Chicken avocado salad with pepper dressing",
-      "Dinner": "Grilled chicken with a side of avocado puree and pepper"
+      "Breakfast": "Egg omelet with cottage cheese and pepper",
+      "Lunch": "Salmon grilled with a nut crust",
+      "Dinner": "Chicken breast skewers with black chocolate mole sauce"
     },
     "Friday": {
-      "Breakfast": "Eggs baked in avocado with chicken strips",
-      "Lunch": "Chicken and avocado skewers seasoned with pepper",
-      "Dinner": "Shredded chicken with avocado topping and a dash of pepper"
+      "Breakfast": "Oatmeal with a scoop of cottage cheese and black chocolate",
+      "Lunch": "Chicken salad with nuts, served in pepper boats",
+      "Dinner": "Pan-seared salmon with a crunchy nut topping"
     },
     "Saturday": {
-      "Breakfast": "Avocado stuffed with chicken salad and pepper",
-      "Lunch": "Cold chicken breast slices with avocado dip and pepper",
-      "Dinner": "Spicy chicken stir-fry with avocado and pepper"
+      "Breakfast": "Nuts and cottage cheese mixed into oatmeal",
+      "Lunch": "Pepper stuffed with scrambled eggs and salmon",
+      "Dinner": "Grilled chicken breast with a side of chocolate-dusted nuts"
     },
     "Sunday": {
-      "Breakfast": "Avocado and chicken scramble with ground pepper",
-      "Lunch": "Stuffed avocados with shredded chicken and pepper",
-      "Dinner": "Chicken pepper roast with creamy avocado sauce"
+      "Breakfast": "Omelet with salmon and pepper",
+      "Lunch": "Nut-crusted chicken cutlets with a side of cottage cheese",
+      "Dinner": "Baked salmon with a side of mashed pepper oatmeal"
     }
   },
-  "ingredients": [
-    "pepper",
-    "chicken breast",
-    "avocado"
-  ],
-  "equipment": [
-    "kettlebell",
-    "jump rope"
-  ]
+  "ingredients": ["pepper", "chicken breast", "oatmeal", "eggs", "black chocolate", "salmon", "nuts", "cottage cheese"],
+  "equipment": ["kettlebell", "jump rope", "medicine ball"]
 }

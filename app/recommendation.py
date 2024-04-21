@@ -45,7 +45,6 @@ def handle_query():
     # Training Sessions and Exercises
     training_sessions = api_response.get('training_sessions_day_by_day', {})
 
-
     for day, exercises in training_sessions.items():
         # Check if the session already exists
         session_exists = Session.query.filter_by(user_id=user_id, day=day, programme=str(exercises)).first()

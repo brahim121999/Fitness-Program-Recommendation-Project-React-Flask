@@ -23,3 +23,4 @@ requests==2.31.0
 openai
 pinecone-client==3.2.2
 bs4==0.0.2
+flask_mail

@@ -1,7 +1,7 @@
 ## Presentation
 
 * This project is realised by Ibrahim Braham & Badr-Eddine Jouad & Mamadou Lamine Dikhaby as part of Back-end and Front-end 
-* web development cours taken in Paris Dauphine University
+web development cours taken in Paris Dauphine University
 
 fitness recommendation api  [Flask](http://flask.pocoo.org) & [SQLAlchemy](http://www.sqlalchemy.org), and connecting the both using [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org) library.
 
@@ -10,7 +10,7 @@ fitness recommendation api  [Flask](http://flask.pocoo.org) & [SQLAlchemy](http:
 ## Getting started
 * At first you'll need to get the source code of the project. Do this by cloning
 ```
-
+$ git clone https://github.com/badrjouad/fitness-program-recommendation/
 ```
 
 * Create a virtual environment for this project and install dependencies
