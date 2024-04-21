@@ -14,9 +14,48 @@ Endpoints for User CRUD
 ===========================
 """
 
-# Endpoint for user login
+import secrets
+import string
+from flask_mail import Mail ,Message
 
-# Endpoint for user login
+mail = Mail()
+
+# Fonction pour générer un token de session
+def generate_session_token(user):
+    # Générer un token aléatoire sécurisé
+    token = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
+
+    # Sauvegarder le token dans la base de données ou dans une session
+    # Assurez-vous que votre modèle User a un champ pour stocker le token de session
+    user.session_token = token
+    db.session.commit()
+
+    return token
+
+# Fonction pour envoyer un e-mail de réinitialisation de mot de passe
+def send_password_reset_email(user):
+    # Générez un lien de réinitialisation de mot de passe unique
+    # Ceci est un exemple, vous pouvez utiliser une méthode différente pour générer le lien
+    reset_link = f"http://yourwebsite.com/reset-password?token={user.password_reset_token}"
+
+    # Créez un message e-mail
+    msg = Message("Password Reset Request", recipients=[user.email])
+
+    # Corps de l'e-mail
+    msg.body = f"Bonjour {user.username},\n\nPour réinitialiser votre mot de passe, veuillez suivre ce lien : {reset_link}\n\nCordialement,\nVotre équipe de support"
+
+    # Envoyez l'e-mail
+    mail.send(msg)
+
+class User(db.Model):
+    # Vos autres champs de modèle ici...
+
+    def check_password(self, password):
+        # Comparez le mot de passe hashé stocké dans la base de données avec le mot de passe fourni
+        # Vous pouvez utiliser une méthode de hachage sécurisée comme bcrypt pour cela
+        # Assurez-vous d'installer bcrypt avec pip install bcrypt
+        return password == self.password
+
 @app.route("/login", methods=["POST"])
 def login():
     data = request.json
