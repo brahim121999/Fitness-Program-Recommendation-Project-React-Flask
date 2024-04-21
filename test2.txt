@@ -1,0 +1,99 @@
+{
+  "objective": "build muscle",
+  "training_sessions_day_by_day": {
+    "Monday": {
+      "Exercises": [
+        {
+          "Name": "Kettlebell Swings",
+          "Description": "Stand with your feet shoulder-width apart, holding the kettlebell with both hands. Bend your knees slightly, hinge at your hips to swing the kettlebell between your legs, then thrust your hips forward to swing the kettlebell up to shoulder height. Repeat."
+        },
+        {
+          "Name": "Jump Rope",
+          "Description": "Use the jump rope for a cardiovascular workout. Start slowly and gradually increase your speed to maintain a consistent pace. Aim to jump rope for 10-15 minutes."
+        },
+        {
+          "Name": "Russian Twists with Kettlebell",
+          "Description": "Sit on the ground with your knees bent and feet flat. Hold the kettlebell with both hands in front of your chest. Lean back slightly and lift your feet off the floor. Twist your torso to the right, then to the left to complete one rep."
+        }
+      ]
+    },
+    "Wednesday": {
+      "Exercises": [
+        {
+          "Name": "Kettlebell Goblet Squat",
+          "Description": "Hold the kettlebell close to your chest with both hands. Spread your feet to slightly wider than shoulder-width apart. Squat down, keeping your back straight and chest up. Push through your heels to return to the starting position."
+        },
+        {
+          "Name": "Jump Rope - High Knees",
+          "Description": "Perform the jump rope exercise focusing on lifting your knees as high as possible in a running in place manner."
+        },
+        {
+          "Name": "Kettlebell One-arm Press",
+          "Description": "Stand with feet shoulder-width apart. Hold the kettlebell in one hand and press it overhead, locking out your elbow. Lower it back down to your shoulder slowly. Complete all reps on one side before switching to the other arm."
+        }
+      ]
+    },
+    "Friday": {
+      "Exercises": [
+        {
+          "Name": "Kettlebell Deadlift",
+          "Description": "Place the kettlebell between your feet, hinge at your hips and bend your knees slightly to grab the kettlebell. Keep your back flat and look straight ahead as you stand up, lifting the kettlebell. Lower it back down to the ground."
+        },
+        {
+          "Name": "Jump Rope - Criss Cross",
+          "Description": "Perform the jump rope by crossing your arms in front of you as the rope comes down, and uncrossing them as you jump over the rope."
+        },
+        {
+          "Name": "Kettlebell Lunge Press",
+          "Description": "Step forward into a lunge position holding the kettlebell at your chest. As you lunge down, press the kettlebell above your head. Return to the start and repeat on the other side."
+        }
+      ]
+    }
+  },
+  "meals": {
+    "Monday": {
+      "Breakfast": "Scrambled eggs with diced chicken breast and sliced avocado",
+      "Lunch": "Grilled chicken breast with sliced avocado and black pepper",
+      "Dinner": "Chicken breast stir-fried with pepper and avocado slices"
+    },
+    "Tuesday": {
+      "Breakfast": "Avocado toast with peppered chicken strips",
+      "Lunch": "Chicken salad with avocado cubes and ground pepper",
+      "Dinner": "Roasted chicken breast with a side of mashed avocado and cracked pepper"
+    },
+    "Wednesday": {
+      "Breakfast": "Chicken omelette with avocado and a pinch of pepper",
+      "Lunch": "Avocado chicken wrap sprinkled with black pepper",
+      "Dinner": "Pan-seared chicken with avocado slices and pepper"
+    },
+    "Thursday": {
+      "Breakfast": "Chicken and avocado quesadilla with a sprinkle of pepper",
+      "Lunch": "Chicken avocado salad with pepper dressing",
+      "Dinner": "Grilled chicken with a side of avocado puree and pepper"
+    },
+    "Friday": {
+      "Breakfast": "Eggs baked in avocado with chicken strips",
+      "Lunch": "Chicken and avocado skewers seasoned with pepper",
+      "Dinner": "Shredded chicken with avocado topping and a dash of pepper"
+    },
+    "Saturday": {
+      "Breakfast": "Avocado stuffed with chicken salad and pepper",
+      "Lunch": "Cold chicken breast slices with avocado dip and pepper",
+      "Dinner": "Spicy chicken stir-fry with avocado and pepper"
+    },
+    "Sunday": {
+      "Breakfast": "Avocado and chicken scramble with ground pepper",
+      "Lunch": "Stuffed avocados with shredded chicken and pepper",
+      "Dinner": "Chicken pepper roast with creamy avocado sauce"
+    }
+  },
+  "ingredients": [
+    "pepper",
+    "chicken breast",
+    "avocado"
+  ],
+  "equipment": [
+    "kettlebell",
+    "jump rope"
+  ]
+}
