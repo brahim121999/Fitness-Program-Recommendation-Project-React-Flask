@@ -69,6 +69,6 @@ $ flask run
 ```
 
 * Don't forget to add the API keys that we will send you via email into the openai_service.py and the pincone_service.py files
-* Due to github rules we can't upload the .env file
+* Due to github rules we can't upload the .env file that contains the keys
 
 And finally, the application will run on the following URL: http://127.0.0.1:5000
