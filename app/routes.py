@@ -14,6 +14,46 @@ Endpoints for User CRUD
 ===========================
 """
 
+# Endpoint for user login
+
+# Endpoint for user login
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    # Vérifiez les identifiants de connexion, par exemple :
+    user = User.query.filter_by(email=email).first()
+
+    if user and user.check_password(password):
+        # Créez une session de connexion ou un token JWT et renvoyez-le comme réponse
+        # Exemple :
+        # session_token = generate_session_token(user)
+        # return jsonify({'message': 'Login successful!', 'status': 200, 'session_token': session_token})
+        return make_response(jsonify({'message': 'Login successful!', 'status': 200}))
+
+    # Si les identifiants sont incorrects
+    return make_response(jsonify({'message': 'Invalid email or password!', 'status': 401}))
+
+# Endpoint for forgot password
+@app.route("/forgot-password", methods=["POST"])
+def forgot_password():
+    data = request.json
+    email = data.get('email')
+
+    # Vérifiez si l'email existe dans la base de données
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+        # Générez et envoyez un lien de réinitialisation de mot de passe par e-mail
+        # Exemple :
+        # send_password_reset_email(user)
+        return make_response(jsonify({'message': 'Password reset instructions sent to your email!', 'status': 200}))
+
+    # Si l'email n'existe pas dans la base de données
+    return make_response(jsonify({'message': 'Email not found!', 'status': 404}))
+
 
 # Endpoint to CREATE user
 @app.route("/user", methods=["POST"])
@@ -247,6 +287,7 @@ def update_menu(id):
     else:
         return make_response(jsonify({'message': 'Invalid Menu ID!', 'status': 404}))
 
+
 # Endpoint to DELETE menu
 @app.route("/menu/<int:id>", methods=["DELETE"])
 def delete_menu(id):
@@ -300,6 +341,7 @@ def update_ingredient(id):
         return make_response(jsonify({'message': 'Ingredient Info Edited!', 'status': 200, 'data': result}))
     else:
         return make_response(jsonify({'message': 'Invalid Ingredient ID!', 'status': 404}))
+
 
 # Endpoint to DELETE ingredient
 @app.route("/ingredient/<int:id>", methods=["DELETE"])
