@@ -1,72 +1,86 @@
 {
-  "objective": "build muscle",
+  "objective": "improve endurance",
   "training_sessions_day_by_day": {
     "Monday": [
       {
         "exercise": "Kettlebell Swings",
-        "description": "Stand with feet shoulder-width apart. Hold the kettlebell with both hands in front of you. Swing the kettlebell between your legs while bending your hips then thrusting forward to swing it to chest height. Keep your arms straight and core tight. Perform 3 sets of 15 reps."
-      },
-      {
-        "exercise": "Medicine Ball Slams",
-        "description": "Stand with your feet shoulder-width apart holding a medicine ball above your head. Slam the ball down on the ground in front of you as hard as you can, engaging your core. Squat to pick up the ball and return to the starting position. Perform 3 sets of 12 reps."
+        "description": "Perform kettlebell swings for 1 minute. This exercise helps to improve cardiovascular endurance and strengthens the lower back, shoulders, and hamstrings."
       },
       {
         "exercise": "Jump Rope",
-        "description": "Use the jump rope for a cardio interval. Jump continuously at a steady pace for 1-2 minutes. Aim for 3 intervals with a 30-second rest in between."
+        "description": "Jump rope for 2 minutes continuously. This enhances footwork, coordination, and stamina."
+      },
+      {
+        "exercise": "Resistance Band Pull-Aparts",
+        "description": "Do resistance band pull-aparts for 1 minute. Target the rear deltoids and upper back, crucial for improving posture and endurance in the upper body."
       }
     ],
-    "Thursday": [
+    "Wednesday": [
       {
-        "exercise": "Kettlebell Goblet Squats",
-        "description": "Hold the kettlebell close to your chest with both hands, feet just wider than shoulder-width apart. Squat down, keeping your chest up and knees tracking over toes. Drive through your heels to stand up. Perform 3 sets of 15 reps."
-      },
-      {
-        "exercise": "Medicine Ball Russian Twists",
-        "description": "Sit on the floor with knees bent and feet flat, holding the medicine ball with both hands. Lean back slightly and lift your feet off the ground. Rotate your torso and the ball to the right, then to the left, to complete one rep. Do 3 sets of 20 twists."
+        "exercise": "Kettlebell Squat Press",
+        "description": "Combine squats with overhead press using a kettlebell. Do this for 1 minute to improve total body strength and endurance."
       },
       {
         "exercise": "Jump Rope",
-        "description": "Use the jump rope to perform high-intensity intervals. Jump as fast as you can for 30 seconds followed by 30 seconds of rest. Repeat for 5 rounds."
+        "description": "Jump rope with high knees for 2 minutes to further push cardiovascular limits."
+      },
+      {
+        "exercise": "Resistance Bands Deadlifts",
+        "description": "Perform deadlifts with resistance bands for 1 minute to strengthen the lower back, glutes, and hamstrings."
+      }
+    ],
+    "Friday": [
+      {
+        "exercise": "Kettlebell Russian Twists",
+        "description": "Sit on the floor with your knees bent, and twist side to side with the kettlebell for 1 minute. This targets core strength and endurance."
+      },
+      {
+        "exercise": "Jump Rope Double Unders",
+        "description": "Do double unders with a jump rope for 2 minutes. This high-intensity move boosts aerobic capacity and agility."
+      },
+      {
+        "exercise": "Resistance Band Chest Press",
+        "description": "Perform chest presses with resistance bands for 1 minute to strengthen the chest, shoulders, and triceps."
       }
     ]
   },
   "meals": {
     "Monday": {
-      "Breakfast": "Oatmeal with chopped nuts and black chocolate",
-      "Lunch": "Grilled chicken breast seasoned with pepper and a side of cottage cheese",
-      "Dinner": "Baked salmon with a pepper crust, served with a side of steamed vegetables"
+      "Breakfast": "Oatmeal with sliced chicken breast and pepper",
+      "Lunch": "Chicken breast salad with chopped eggs and pepper",
+      "Dinner": "Stir-fried chicken breast with pepper and side of yogurt with proteins"
     },
     "Tuesday": {
-      "Breakfast": "Scrambled eggs with pepper and oatmeal",
-      "Lunch": "Salmon salad with nuts and a sprinkle of black chocolate shavings",
-      "Dinner": "Chicken breast stir-fry with mixed vegetables and nuts"
+      "Breakfast": "Scrambled eggs with diced chicken breast",
+      "Lunch": "Chicken and pepper wraps with a side of yogurt with proteins",
+      "Dinner": "Omelette with pepper and chicken breast strips"
     },
     "Wednesday": {
-      "Breakfast": "Oatmeal pancakes with a dark chocolate and nut topping",
-      "Lunch": "Spicy pepper chicken wraps with leafy greens",
-      "Dinner": "Cottage cheese stuffed peppers topped with crushed nuts"
+      "Breakfast": "Protein-rich chicken and egg pepper skillet",
+      "Lunch": "Chicken breast slices over a bed of seasoned pepper",
+      "Dinner": "Pepper stuffed with chicken and egg, served with yogurt"
     },
     "Thursday": {
-      "Breakfast": "Egg omelet with cottage cheese and pepper",
-      "Lunch": "Salmon grilled with a nut crust",
-      "Dinner": "Chicken breast skewers with black chocolate mole sauce"
+      "Breakfast": "Pepper and chicken omelette",
+      "Lunch": "Chicken pepper soup with a side of oatmeal",
+      "Dinner": "Baked chicken breast with steamed pepper and yogurt dressing"
     },
     "Friday": {
-      "Breakfast": "Oatmeal with a scoop of cottage cheese and black chocolate",
-      "Lunch": "Chicken salad with nuts, served in pepper boats",
-      "Dinner": "Pan-seared salmon with a crunchy nut topping"
+      "Breakfast": "Egg whites scrambled with pepper and diced chicken",
+      "Lunch": "Chicken and pepper salad topped with yogurt dressing",
+      "Dinner": "Grilled chicken with roasted peppers and side of oatmeal"
     },
     "Saturday": {
-      "Breakfast": "Nuts and cottage cheese mixed into oatmeal",
-      "Lunch": "Pepper stuffed with scrambled eggs and salmon",
-      "Dinner": "Grilled chicken breast with a side of chocolate-dusted nuts"
+      "Breakfast": "Chicken strips with sautéed peppers wrapped in an omelette",
+      "Lunch": "Yogurt marinated chicken breast grilled with peppers",
+      "Dinner": "Stuffed peppers with ground chicken and eggs"
     },
     "Sunday": {
-      "Breakfast": "Omelet with salmon and pepper",
-      "Lunch": "Nut-crusted chicken cutlets with a side of cottage cheese",
-      "Dinner": "Baked salmon with a side of mashed pepper oatmeal"
+      "Breakfast": "Yogurt smoothie with oatmeal, chicken, and pepper blend",
+      "Lunch": "Pepper chicken stir-fry with boiled egg sides",
+      "Dinner": "Chicken breast with pepper sauce over oatmeal"
     }
   },
-  "ingredients": ["pepper", "chicken breast", "oatmeal", "eggs", "black chocolate", "salmon", "nuts", "cottage cheese"],
-  "equipment": ["kettlebell", "jump rope", "medicine ball"]
+  "ingredients": ["pepper", "chicken breast", "oatmeal", "eggs", "yogurt with proteins"],
+  "equipment": ["kettlebell", "jump rope", "resistance bands"]
 }
