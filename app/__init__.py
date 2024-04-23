@@ -10,7 +10,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-CORS(app, resources={r"/api/*": {"origins": ["http://0.0.0.0.0:8087"]}})
+CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173"]}})
 
 
 # Initialize SQLAlchemy and Migrate
