@@ -8,11 +8,10 @@ from sqlalchemy import delete
 from flask import render_template
 from flask import Blueprint
 import json
+from app.routes import authenticate
 
 # Sample index name since we're only creating a single index
 PINECONE_INDEX_NAME = 'bob7'
-
-
 
 user_interface = Blueprint('user_interface', __name__)
 
@@ -22,6 +21,7 @@ def user_interface_route():
 
 
 @api_blueprint.route('/handle-query', methods=['POST'])
+@authenticate
 def handle_query():
     # Extract user_id and question from the request JSON payload
     user_id = request.json['user_id']
@@ -92,6 +92,46 @@ def handle_query():
 
     # Return response
     return jsonify({"question": question, "answer": answer, "status": "Data saved to database successfully"})
+
+
+@api_blueprint.route('/get-user-data/<int:user_id>', methods=['GET'])
+def get_user_data(user_id):
+    # Récupérer les données spécifiques à l'utilisateur
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    # Récupérer les sessions d'entraînement pour l'utilisateur
+    sessions = Session.query.filter_by(user_id=user_id).all()
+
+    # Récupérer l'équipement pour l'utilisateur
+    equipment = Equipment.query.filter_by(user_id=user_id).all()
+
+    # Récupérer les menus pour l'utilisateur
+    menus = Menu.query.filter_by(user_id=user_id).all()
+
+    # Récupérer les ingrédients pour l'utilisateur
+    ingredients = Ingredient.query.filter_by(user_id=user_id).all()
+
+    # Convertir les données en dictionnaires
+    sessions_data = [session.to_dict() for session in sessions]
+    equipment_data = [equip.to_dict() for equip in equipment]
+    menus_data = [menu.to_dict() for menu in menus]
+    ingredients_data = [ingredient.to_dict() for ingredient in ingredients]
+
+    # Préparer la réponse JSON
+    response_data = {
+        "user": user.to_dict(),
+        "sessions": sessions_data,
+        "equipment": equipment_data,
+        "menus": menus_data,
+        "ingredients": ingredients_data
+    }
+
+    # Renvoyer la réponse sous forme de JSON
+    return jsonify(response_data)
+
 
 
 
