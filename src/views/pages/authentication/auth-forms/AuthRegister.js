@@ -76,14 +76,15 @@ const FirebaseRegister = ({ ...others }) => {
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string().email('Veuillez saisir une adresse e-mail valide').max(255).required("L'adresse e-mail est requise"),
-          password: Yup.string().max(255).required('Le mot de passe est requis')
+          password: Yup.string().max(255).required('Le mot de passe est requis'),
+          
         })}
-        onSubmit={async ({email, password, setErrors, setStatus, setSubmitting }) => {
+        onSubmit={async ({email, password, nom, prenom, setErrors, setStatus, setSubmitting }) => {
           try {
             if (scriptedRef.current) {
-              const response = await axios.post('URL__ENDPOINT_PYTHON', {
+              const response = await axios.post('http://localhost:5000/user', {
                 email,
-                password
+                password,
               });
               console.log('Réponse du serveur:', response.data);
               setStatus({ success: true });
