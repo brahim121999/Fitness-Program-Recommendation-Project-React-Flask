@@ -11,6 +11,66 @@ api_blueprint = Blueprint('api', __name__)
 mail = Mail()
 
 
+# Fonction pour envoyer un e-mail de réinitialisation de mot de passe
+def send_password_reset_email(user):
+    # Générez un lien de réinitialisation de mot de passe unique
+    # Ceci est un exemple, vous pouvez utiliser une méthode différente pour générer le lien
+    reset_link = f"http://yourwebsite.com/reset-password?token={user.password_reset_token}"
+
+    # Créez un message e-mail
+    msg = Message("Password Reset Request", recipients=[user.email])
+
+    # Corps de l'e-mail
+    msg.body = f"Bonjour {user.username},\n\nPour réinitialiser votre mot de passe, veuillez suivre ce lien : {reset_link}\n\nCordialement,\nVotre équipe de support"
+
+    # Envoyez l'e-mail
+    mail.send(msg)
+
+class User(db.Model):
+    def check_password(self, password):
+        # Comparez le mot de passe hashé stocké dans la base de données avec le mot de passe fourni
+        # Vous pouvez utiliser une méthode de hachage sécurisée comme bcrypt pour cela
+        # Assurez-vous d'installer bcrypt avec pip install bcrypt
+        return password == self.password
+
+@app.route("/login", methods=["POST"])
+def login():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    # Vérifiez les identifiants de connexion, par exemple :
+    user = User.query.filter_by(email=email).first()
+
+    if user and user.check_password(password):
+        # Créez une session de connexion ou un token JWT et renvoyez-le comme réponse
+        # Exemple :
+        # session_token = generate_session_token(user)
+        # return jsonify({'message': 'Login successful!', 'status': 200, 'session_token': session_token})
+        return make_response(jsonify({'message': 'Login successful!', 'status': 200}))
+
+    # Si les identifiants sont incorrects
+    return make_response(jsonify({'message': 'Invalid email or password!', 'status': 401}))
+
+# Endpoint for forgot password
+@app.route("/forgot-password", methods=["POST"])
+def forgot_password():
+    data = request.json
+    email = data.get('email')
+
+    # Vérifiez si l'email existe dans la base de données
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+        # Générez et envoyez un lien de réinitialisation de mot de passe par e-mail
+        # Exemple :
+        # send_password_reset_email(user)
+        return make_response(jsonify({'message': 'Password reset instructions sent to your email!', 'status': 200}))
+
+    # Si l'email n'existe pas dans la base de données
+    return make_response(jsonify({'message': 'Email not found!', 'status': 404}))
+
+
 def authenticate(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -31,6 +91,15 @@ def get_users():
     result = users_schema.dump(all_users)
     return make_response(jsonify({'message': 'All Users!', 'status': 200, 'data': result}))
 
+# Endpoint to CREATE user
+@app.route("/user", methods=["POST"])
+def create_user():
+    data = request.json
+    new_user = User(**data)
+    db.session.add(new_user)
+    db.session.commit()
+    result = user_schema.dump(new_user)
+    return make_response(jsonify({'message': 'New User Created!', 'status': 201, 'data': result}))
 
 @app.route("/user/<int:id>", methods=["GET"])
 @authenticate

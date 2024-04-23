@@ -1,5 +1,6 @@
 import time
 from . import api_blueprint
+from . import app
 from flask import request, jsonify
 from app.services import openai_service, pinecone_service, scraping_service
 from app.utils.helper_functions import chunk_text, build_prompt
@@ -9,6 +10,7 @@ from flask import render_template
 from flask import Blueprint
 import json
 from app.routes import authenticate
+from collections import defaultdict
 
 # Sample index name since we're only creating a single index
 PINECONE_INDEX_NAME = 'bob7'
@@ -20,10 +22,11 @@ def user_interface_route():
     return render_template('index.html')
 
 
-@api_blueprint.route('/handle-query', methods=['POST'])
-@authenticate
+@app.route('/handle-query', methods=['POST'])
 def handle_query():
     # Extract user_id and question from the request JSON payload
+    #user_id = request.json['user_id']
+    #user_id = session.get("user_id")
     user_id = request.json['user_id']
     question = request.json['question']
 
@@ -94,42 +97,53 @@ def handle_query():
     return jsonify({"question": question, "answer": answer, "status": "Data saved to database successfully"})
 
 
-@api_blueprint.route('/get-user-data/<int:user_id>', methods=['GET'])
+@app.route('/get-user-data/<int:user_id>', methods=['GET'])
 def get_user_data(user_id):
-    # Récupérer les données spécifiques à l'utilisateur
     user = User.query.get(user_id)
 
     if not user:
         return jsonify({"error": "User not found"}), 404
 
-    # Récupérer les sessions d'entraînement pour l'utilisateur
     sessions = Session.query.filter_by(user_id=user_id).all()
 
-    # Récupérer l'équipement pour l'utilisateur
-    equipment = Equipment.query.filter_by(user_id=user_id).all()
+    equipments = Equipment.query.filter_by(user_id=user_id).all()
 
-    # Récupérer les menus pour l'utilisateur
     menus = Menu.query.filter_by(user_id=user_id).all()
 
-    # Récupérer les ingrédients pour l'utilisateur
     ingredients = Ingredient.query.filter_by(user_id=user_id).all()
 
-    # Convertir les données en dictionnaires
-    sessions_data = [session.to_dict() for session in sessions]
-    equipment_data = [equip.to_dict() for equip in equipment]
-    menus_data = [menu.to_dict() for menu in menus]
-    ingredients_data = [ingredient.to_dict() for ingredient in ingredients]
+    sessions_programme = defaultdict(list)
+    for session in sessions:
+        json_string = session.programme.replace("'", '"')
 
-    # Préparer la réponse JSON
+        try:
+            programme_dict = json.loads(json_string)
+            sessions_programme[session.day].append(programme_dict)
+
+        except json.JSONDecodeError:
+            print(f"Error decoding JSON for session on day {session.day}: {json_string}")
+            continue
+
+    sessions_programme = dict(sessions_programme)
+
+    equipment = [equipment.description for equipment in equipments]
+
+    menuss = defaultdict(list)
+    for menu in menus:
+        meal_dict = {menu.type: menu.name}
+        menuss[menu.day].append(meal_dict)
+
+
+    ingredients = [ingredient.name for ingredient in ingredients]
+
     response_data = {
-        "user": user.to_dict(),
-        "sessions": sessions_data,
-        "equipment": equipment_data,
-        "menus": menus_data,
-        "ingredients": ingredients_data
+        "user": user.name,
+        #"sessions_programme": sessions_programme,
+        "equipments": equipment,
+        "menus": menuss,
+        "ingredients": ingredients
     }
 
-    # Renvoyer la réponse sous forme de JSON
     return jsonify(response_data)
 
 
