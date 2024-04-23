@@ -3,14 +3,14 @@ import { Typography } from "@mui/material";
 
 // project imports
 import MainCard from "../../ui-component/cards/MainCard";
-import RecommendationTab from "./recommendationTab-page";
+import TrainingForm from "./trainingForm-page";
 
 // ==============================|| RECOMMENDATION PAGE ||============================== //
 
 const RecommendationPage = () => (
-  <MainCard title="Conseils Nutrition & Entraînement">
+  <MainCard title="Configuration de Programme d'Entraînement & Nutrition">
     <Typography variant="body2">
-      <RecommendationTab />
+      <TrainingForm />
     </Typography>
   </MainCard>
 );

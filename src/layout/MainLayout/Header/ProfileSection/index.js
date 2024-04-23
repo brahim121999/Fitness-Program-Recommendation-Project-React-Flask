@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -44,7 +44,12 @@ const ProfileSection = () => {
    * */
   const anchorRef = useRef(null);
   const handleLogout = async () => {
-    console.log('Logout');
+    console.log('Déconnexion réussie');
+    // Afficher un message de déconnexion réussie
+    toast.success("Déconnexion réussie");
+
+    // Rediriger vers la page de connexion
+    navigate('/login');
   };
 
   const handleClose = (event) => {

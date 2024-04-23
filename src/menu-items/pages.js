@@ -1,9 +1,9 @@
 // assets
-import { IconKey } from '@tabler/icons-react';
+import { IconKey, IconHome } from '@tabler/icons-react';
 
 // constant
 const icons = {
-  IconKey
+  IconKey, IconHome
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -14,27 +14,13 @@ const pages = {
   type: 'group',
   children: [
     {
-      id: 'authentication',
-      title: 'Authentification',
-      type: 'collapse',
-      icon: icons.IconKey,
-
-      children: [
-        {
-          id: 'login3',
-          title: 'Connexion',
-          type: 'item',
-          url: '/login',
-          target: true
-        },
-        {
-          id: 'register3',
-          title: 'Inscription',
-          type: 'item',
-          url: '/register',
-          target: true
-        }
-      ]
+      id: 'home',
+      title: 'Accueil',
+      type: 'item',
+      icon: icons.IconHome,
+      url: '/',
+      breadcrumbs: false
+      
     }
   ]
 };

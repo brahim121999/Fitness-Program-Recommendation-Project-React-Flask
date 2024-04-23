@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField, Typography, MenuItem } from '@mui/material';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const ingredientsList = [
     'Légumes frais (carottes, brocolis, épinards, etc.)',
@@ -31,27 +33,33 @@ const ingredientsList = [
   
 
 const TrainingForm = () => {
-  const [trainingGoal, setTrainingGoal] = useState('');
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [selectedEquipment, setSelectedEquipment] = useState([]);
-  const [trainingFrequency, setTrainingFrequency] = useState('');
+  const navigate = useNavigate();
+  const [objective, setObjective] = useState('');
+  const [ingredients, setIngredients] = useState([]);
+  const [materials, setMaterials] = useState([]);
+  const [trainingTimes, setTrainingTimes] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Envoi des données au backend avec Axios
-      const response = await axios.post('URL_ENDPOINT_PYTHON', {
-        trainingGoal,
-        selectedIngredients,
-        selectedEquipment,
-        trainingFrequency,
+      const response = await axios.post('http://127.0.0.1:5000/handle-query', {
+        question: {
+          objective, 
+          ingredients, 
+          materials, 
+          trainingTimes, 
+        },
+        user_id: "1", 
       });
       console.log('Réponse du serveur:', response.data);
+      toast.success('Connexion réussie ! Bienvenue à bord.');
+      navigate('/');
       // Réinitialiser le formulaire après soumission réussie si nécessaire
-      setTrainingGoal('');
-      setSelectedIngredients([]);
-      setSelectedEquipment([]);
-      setTrainingFrequency('');
+      setObjective('');
+      setIngredients([]);
+      setMaterials([]);
+      setTrainingTimes('');
     } catch (error) {
       console.error('Erreur lors de la soumission du formulaire:', error);
     }
@@ -59,19 +67,19 @@ const TrainingForm = () => {
 
   const handleIngredientChange = (event) => {
     const { value } = event.target;
-    setSelectedIngredients(
-      selectedIngredients.includes(value)
-        ? selectedIngredients.filter((item) => item !== value)
-        : [...selectedIngredients, value]
+    setIngredients(
+      ingredients.includes(value)
+        ? ingredients.filter((item) => item !== value)
+        : [...ingredients, value]
     );
   };
 
   const handleEquipmentChange = (event) => {
     const { value } = event.target;
-    setSelectedEquipment(
-      selectedEquipment.includes(value)
-        ? selectedEquipment.filter((item) => item !== value)
-        : [...selectedEquipment, value]
+    setMaterials(
+      materials.includes(value)
+        ? materials.filter((item) => item !== value)
+        : [...materials, value]
     );
   };
 
@@ -89,8 +97,8 @@ const TrainingForm = () => {
                 fullWidth
                 select
                 variant="outlined"
-                value={trainingGoal}
-                onChange={(e) => setTrainingGoal(e.target.value)}
+                value={objective}
+                onChange={(e) => setObjective(e.target.value)}
               >
                 <MenuItem value="Perte de poids">Perte de poids</MenuItem>
                 <MenuItem value="Gain de masse musculaire">Gain de masse musculaire</MenuItem>
@@ -105,7 +113,7 @@ const TrainingForm = () => {
                 {ingredientsList.map((ingredient) => (
                   <FormControlLabel
                     key={ingredient}
-                    control={<Checkbox checked={selectedIngredients.includes(ingredient)} onChange={handleIngredientChange} value={ingredient} />}
+                    control={<Checkbox checked={ingredients.includes(ingredient)} onChange={handleIngredientChange} value={ingredient} />}
                     label={ingredient}
                   />
                 ))}
@@ -119,7 +127,7 @@ const TrainingForm = () => {
                 {equipmentList.map((equipment) => (
                   <FormControlLabel
                     key={equipment}
-                    control={<Checkbox checked={selectedEquipment.includes(equipment)} onChange={handleEquipmentChange} value={equipment} />}
+                    control={<Checkbox checked={materials.includes(equipment)} onChange={handleEquipmentChange} value={equipment} />}
                     label={equipment}
                   />
                 ))}
@@ -133,8 +141,8 @@ const TrainingForm = () => {
                 fullWidth
                 select
                 variant="outlined"
-                value={trainingFrequency}
-                onChange={(e) => setTrainingFrequency(e.target.value)}
+                value={trainingTimes}
+                onChange={(e) => setTrainingTimes(e.target.value)}
               >
                 <MenuItem value="1">1 fois par semaine</MenuItem>
                 <MenuItem value="2">2 fois par semaine</MenuItem>

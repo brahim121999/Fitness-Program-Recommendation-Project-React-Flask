@@ -7,6 +7,7 @@ import Loadable from '../ui-component/Loadable';
 // welcome page routing
 const WelcomePage = Loadable(lazy(() => import('../views/welcome-page')));
 const RecommendationPage = Loadable(lazy(() => import('../views/recommendation-page')));
+const ProgramPage = Loadable(lazy(() => import('../views/program-page')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -24,6 +25,16 @@ const MainRoutes = {
         {
           path: 'recommandation',
           element: <RecommendationPage />
+        }
+      ]
+    }
+    ,
+    {
+      path: '/',
+      children: [
+        {
+          path: 'programme',
+          element: <ProgramPage />
         }
       ]
     }
