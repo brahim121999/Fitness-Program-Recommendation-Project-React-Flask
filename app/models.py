@@ -2,7 +2,7 @@ from app import db
 from sqlalchemy_utils import ChoiceType
 
 from uuid import uuid4
-import datetime, enum
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 # method to generate uuid
@@ -23,6 +23,7 @@ class User(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
+    username = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     weight = db.Column(db.Float)
     height = db.Column(db.Float)
@@ -33,9 +34,10 @@ class User(BaseModel):
     equipments = db.relationship('Equipment', backref='user', lazy=True)
     menus = db.relationship('Menu', backref='user', lazy=True)
 
-    def __init__(self, name, email, password, weight=None, height=None, contact=None, address=None, objective=None, **kwargs):
+    def __init__(self, name,username, email, password, weight=None, height=None, contact=None, address=None, objective=None, **kwargs):
         super().__init__(**kwargs)
         self.name = name
+        self.username=username
         self.email = email
         self.password = password
         self.weight = weight
@@ -43,6 +45,12 @@ class User(BaseModel):
         self.contact = contact
         self.address = address
         self.objective = objective
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
 
 class Session(BaseModel):

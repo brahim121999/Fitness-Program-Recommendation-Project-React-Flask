@@ -7,8 +7,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-#app = app
 
+
+    # Other app setup and routes...
 
 @app.before_first_request
 def create_tables():
