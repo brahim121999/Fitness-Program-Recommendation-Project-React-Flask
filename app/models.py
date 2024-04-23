@@ -1,5 +1,6 @@
 from app import db
 from sqlalchemy_utils import ChoiceType
+from flask_login import UserMixin
 
 from uuid import uuid4
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -18,8 +19,7 @@ class BaseModel(db.Model):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-
-class User(BaseModel):
+class User(UserMixin,BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
@@ -50,7 +50,7 @@ class User(BaseModel):
         self.password = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password, password)
+        return self.password == password
 
 
 class Session(BaseModel):

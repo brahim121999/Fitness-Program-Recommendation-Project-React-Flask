@@ -6,6 +6,20 @@ from . import app
 from functools import wraps
 from flask import request, jsonify
 from flask_mail import Mail, Message
+from flask_login import login_user,login_required,logout_user
+from flask_login import LoginManager
+
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.init_app(app)
+
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    # since the user_id is just the primary key of our user table, use it in the query for the user
+    print(user_id)
+    return User.query.get(int(user_id))
 
 api_blueprint = Blueprint('api', __name__)
 mail = Mail()
@@ -26,18 +40,18 @@ def send_password_reset_email(user):
     # Envoyez l'e-mail
     mail.send(msg)
 
-class User(db.Model):
-    def check_password(self, password):
-        # Comparez le mot de passe hashé stocké dans la base de données avec le mot de passe fourni
-        # Vous pouvez utiliser une méthode de hachage sécurisée comme bcrypt pour cela
-        # Assurez-vous d'installer bcrypt avec pip install bcrypt
-        return password == self.password
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return make_response(jsonify({'message': 'Logout successful!', 'status': 200}))
 
 @app.route("/login", methods=["POST"])
 def login():
     data = request.json
     email = data.get('email')
     password = data.get('password')
+    remember = True
 
     # Vérifiez les identifiants de connexion, par exemple :
     user = User.query.filter_by(email=email).first()
@@ -47,6 +61,8 @@ def login():
         # Exemple :
         # session_token = generate_session_token(user)
         # return jsonify({'message': 'Login successful!', 'status': 200, 'session_token': session_token})
+        login_user(user, remember=remember)
+        print(login_user)
         return make_response(jsonify({'message': 'Login successful!', 'status': 200}))
 
     # Si les identifiants sont incorrects

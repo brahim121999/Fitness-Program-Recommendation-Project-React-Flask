@@ -10,7 +10,7 @@ class Config(object):
 
     # general
     DEBUG = environ.get('DEBUG')
-    SECRET_KEY = environ.get('SECRET_KEY')
+    SECRET_KEY = 'super secret key'   #environ.get('SECRET_KEY')''
 
     # sqlalchemy
     SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI') or 'sqlite:///db.db' # if you do not create an environment file then it will create a sqlite database

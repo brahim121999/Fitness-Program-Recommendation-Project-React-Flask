@@ -9,6 +9,8 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
+app.secret_key = Config.SECRET_KEY
+
 
 CORS(app, origins='http://localhost:5173', methods=['GET', 'POST', 'PATCH', 'DELETE'], allow_headers=['Content-Type', 'Authorization'])
 
