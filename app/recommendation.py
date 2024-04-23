@@ -4,13 +4,15 @@ from flask import request, jsonify
 from app.services import openai_service, pinecone_service, scraping_service
 from app.utils.helper_functions import chunk_text, build_prompt
 from app.models import *
+from sqlalchemy import delete
+from flask import render_template
+from flask import Blueprint
+import json
 
 # Sample index name since we're only creating a single index
 PINECONE_INDEX_NAME = 'bob7'
 
-from flask import render_template
-from flask import Blueprint
-import json
+
 
 user_interface = Blueprint('user_interface', __name__)
 
@@ -35,6 +37,16 @@ def handle_query():
 
     user_id = 1
 
+    # Before processing new data, clear the tables
+    # Delete data from the tables
+    db.session.execute(delete(Equipment).where(Equipment.user_id == user_id))
+    db.session.execute(delete(Ingredient))
+    db.session.execute(delete(Session).where(Session.user_id == user_id))
+    db.session.execute(delete(Menu).where(Menu.user_id == user_id))
+
+    # Commit the deletion
+    db.session.commit()
+
     # Objective
     objective = api_response.get('objective', '')
     user = User.query.get(user_id)
@@ -46,20 +58,15 @@ def handle_query():
     training_sessions = api_response.get('training_sessions_day_by_day', {})
 
     for day, exercises in training_sessions.items():
-        # Check if the session already exists
-        session_exists = Session.query.filter_by(user_id=user_id, day=day, programme=str(exercises)).first()
-        if not session_exists:
-            # Create session entry
-            session = Session(user_id=user_id, day=day, programme=str(exercises))
-            db.session.add(session)
+        # Create session entry
+        session = Session(user_id=user_id, day=day, programme=str(exercises))
+        db.session.add(session)
 
     equipment = api_response.get('equipment', {})
     for i in equipment:
-        # Check if the equipment already exists
-        equipment_exists = Equipment.query.filter_by(user_id=user_id, description=i).first()
-        if not equipment_exists:
-            equipment = Equipment(user_id=user_id, description=i)
-            db.session.add(equipment)
+        # Create equipment entry
+        new_equipment = Equipment(user_id=user_id, description=i)
+        db.session.add(new_equipment)
 
     # Meals
     meals = api_response.get('meals', {})
@@ -75,24 +82,17 @@ def handle_query():
 
     for day, meals_info in meals.items():
         for meal_time, meal_name in meals_info.items():
-            # Check if the menu already exists
-            menu_exists = Menu.query.filter_by(user_id=user_id, name=meal_name, day=day, type=meal_time).first()
-            if not menu_exists:
-                # Create menu entry
-                menu = Menu(user_id=user_id, name=meal_name, day=day, type=meal_time)
-                db.session.add(menu)
+            # Create menu entry
+            menu = Menu(user_id=user_id, name=meal_name, day=day, type=meal_time)
+            db.session.add(menu)
 
-                # Store ingredients for each meal
-                # meal_ingredients = ingredients  # Get ingredients for this meal
-                # for ingredient_name in meal_ingredients:
-                #     # Create ingredient entry
-                #     ingredient = Ingredient(name=ingredient_name)
-                #     db.session.add(ingredient)
-                #     db.session.commit()  # Commit here to get the ingredient id
-                #
-                #     # Create MenuIngredient entry
-                #     menu_ingredient = MenuIngredient(menu_id=menu.id, ingredient_id=ingredient.id)
-                #     db.session.add(menu_ingredient)
+            # You can re-enable this part if you want to handle menu-ingredient associations
+            # Store ingredients for each meal
+            # for ingredient_name in meal_ingredients:
+            #     ingredient = Ingredient.query.filter_by(name=ingredient_name).first()
+            #     if ingredient:
+            #         menu_ingredient = MenuIngredient(menu_id=menu.id, ingredient_id=ingredient.id)
+            #         db.session.add(menu_ingredient)
 
     # Commit changes to the database
     db.session.commit()

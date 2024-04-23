@@ -15,7 +15,7 @@ Schema classes
 class UserSchema(ma.ModelSchema):
     class Meta:
         model = User
-        fields = ('id', 'name', 'email', 'password', 'weight', 'height', 'contact', 'address')
+        fields = ('id', 'name', 'email', 'password', 'weight', 'height', 'contact', 'address','objective')
 
 
 user_schema = UserSchema()

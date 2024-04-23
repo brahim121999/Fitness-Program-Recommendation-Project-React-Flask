@@ -10,6 +10,8 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
+CORS(app, resources={r"/api/*": {"origins": ["http://0.0.0.0.0:8087"]}})
+
 
 # Initialize SQLAlchemy and Migrate
 db = SQLAlchemy(app)
