@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -39,6 +41,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const FirebaseRegister = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
+  const navigate = useNavigate();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
   const [showPassword, setShowPassword] = useState(false);
@@ -79,19 +82,27 @@ const FirebaseRegister = ({ ...others }) => {
           password: Yup.string().max(255).required('Le mot de passe est requis'),
           
         })}
-        onSubmit={async ({email, password, nom, prenom, setErrors, setStatus, setSubmitting }) => {
+        onSubmit={async ({email, password, lname, fname, setErrors, setStatus, setSubmitting }) => {
           try {
             if (scriptedRef.current) {
+              const name = fname + " "+lname;
+              console.log(name);
               const response = await axios.post('http://localhost:5000/user', {
                 email,
                 password,
+                name
+                
               });
               console.log('Réponse du serveur:', response.data);
-              setStatus({ success: true });
-              setSubmitting(false);
+              
+              toast.success('Inscription réussie ! Vous pouvez maintenant vous connecter.');
+              navigate('/login');
+
+              
             }
           } catch (err) {
             console.error(err);
+            toast.error("Inscription échouée. Cette adresse email est déjà utilisée. Veuillez en choisir une autre.");
             if (scriptedRef.current) {
               setStatus({ success: false });
               setErrors({ submit: err.message });
@@ -109,8 +120,10 @@ const FirebaseRegister = ({ ...others }) => {
                   label="Prénom"
                   margin="normal"
                   name="fname"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
                   type="text"
-                  defaultValue=""
+                  value={values.fname}
                   sx={{ ...theme.typography.customInput }}
                 />
               </Grid>
@@ -120,7 +133,10 @@ const FirebaseRegister = ({ ...others }) => {
                   label="Nom"
                   margin="normal"
                   name="lname"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
                   type="text"
+                  value={values.lname}
                   defaultValue=""
                   sx={{ ...theme.typography.customInput }}
                 />

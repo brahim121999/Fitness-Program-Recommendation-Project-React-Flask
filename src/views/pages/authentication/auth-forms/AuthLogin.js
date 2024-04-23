@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 
 // material-ui
@@ -35,6 +37,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const FirebaseLogin = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
+  const navigate = useNavigate();
   const [checked, setChecked] = useState(true);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -50,8 +53,8 @@ const FirebaseLogin = ({ ...others }) => {
     <>
       <Formik
         initialValues={{
-          email: 'trainSmart@dauphine.eu',
-          password: '123456',
+          email: '',
+          password: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -66,8 +69,14 @@ const FirebaseLogin = ({ ...others }) => {
                 password
               });
               console.log('Réponse du serveur:', response.data);
-              setStatus({ success: true });
-              setSubmitting(false);
+              if(response.data.status === 200){
+                toast.success('Connexion réussie ! Bienvenue à bord.');
+              navigate('/');
+              }
+              else{
+                toast.error("Connexion échouée. Veuillez vérifier vos identifiants et réessayer.");
+              }
+              
             }
           } catch (err) {
             console.error(err);
