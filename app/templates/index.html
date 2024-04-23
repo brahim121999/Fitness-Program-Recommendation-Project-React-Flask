@@ -10,6 +10,9 @@
     <h1>Choose Options:</h1>
 
     <form id="userForm">
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" name="userId" required>
+
         <label for="objective">Objective:</label>
         <select id="objective" name="objective">
             <option value="lose weight">Lose Weight</option>
@@ -125,6 +128,7 @@
     </form>
 
      <script>
+
         function submitForm() {
             var userChoices = {
                 objective: $("#objective").val(),
@@ -145,8 +149,12 @@
 
             console.log(userChoices);
 
+            var userId= $("#userId").val();
+            console.log(userId);
+
             var requestData = {
-                question: userChoices
+                question: userChoices,
+                user_id: userId,
             };
 
             console.log(requestData);
@@ -158,11 +166,9 @@
                 contentType: "application/json",
                 data: JSON.stringify(requestData),
                 success: function(response) {
-                    console.log("fffff");
                     console.log(response);
                 },
                 error: function(error) {
-                    console.log("eeee");
                     console.error(error);
                 }
             });

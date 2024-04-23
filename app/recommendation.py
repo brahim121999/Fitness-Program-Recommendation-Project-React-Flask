@@ -23,78 +23,71 @@ def user_interface_route():
 
 @api_blueprint.route('/handle-query', methods=['POST'])
 def handle_query():
-    # Handle user's query and get the response
+    # Extract user_id and question from the request JSON payload
+    user_id = request.json['user_id']
     question = request.json['question']
+
+    # Fetch the most similar chunks of context for the question
     context_chunks = pinecone_service.get_most_similar_chunks_for_query(question, PINECONE_INDEX_NAME)
     prompt = build_prompt(question, context_chunks)
-    answer = openai_service.get_llm_answer(prompt)
 
-    with open("test2.txt", "w") as my_file:
-        my_file.write(answer)
+    # Get the answer from OpenAI service
+    answer = openai_service.get_llm_answer(prompt)
 
     # Convert the answer JSON string to a dictionary
     api_response = json.loads(answer)
 
-    user_id = 1
-
-    # Before processing new data, clear the tables
-    # Delete data from the tables
+    # Clear data in tables specific to the provided user_id
     db.session.execute(delete(Equipment).where(Equipment.user_id == user_id))
-    db.session.execute(delete(Ingredient))
+    db.session.execute(delete(Ingredient).where(Ingredient.user_id == user_id))
     db.session.execute(delete(Session).where(Session.user_id == user_id))
     db.session.execute(delete(Menu).where(Menu.user_id == user_id))
 
     # Commit the deletion
     db.session.commit()
 
-    # Objective
+    # Update the user's objective
     objective = api_response.get('objective', '')
     user = User.query.get(user_id)
     if user:
         user.objective = objective
         db.session.add(user)
 
-    # Training Sessions and Exercises
+    # Handle training sessions and exercises for the specific user
     training_sessions = api_response.get('training_sessions_day_by_day', {})
 
     for day, exercises in training_sessions.items():
-        # Create session entry
+        # Create session entry for the specific user
         session = Session(user_id=user_id, day=day, programme=str(exercises))
         db.session.add(session)
 
+    # Handle equipment for the specific user
     equipment = api_response.get('equipment', {})
-    for i in equipment:
-        # Create equipment entry
-        new_equipment = Equipment(user_id=user_id, description=i)
+    for equipment_description in equipment:
+        new_equipment = Equipment(user_id=user_id, description=equipment_description)
         db.session.add(new_equipment)
 
-    # Meals
+    # Handle meals for the specific user
     meals = api_response.get('meals', {})
-    ingredients = api_response.get('ingredients', [])  # Get all ingredients
+    ingredients = api_response.get('ingredients', [])
 
     for ingredient_name in ingredients:
-        # Check if the ingredient already exists
-        ingredient_exists = Ingredient.query.filter_by(name=ingredient_name).first()
-        if not ingredient_exists:
-            # Create ingredient entry
-            ingredient = Ingredient(name=ingredient_name)
+        # Check if the ingredient already exists for this user
+        ingredient = Ingredient.query.filter_by(name=ingredient_name, user_id=user_id).first()
+        if not ingredient:
+            ingredient = Ingredient(name=ingredient_name, user_id=user_id)
             db.session.add(ingredient)
 
     for day, meals_info in meals.items():
         for meal_time, meal_name in meals_info.items():
-            # Create menu entry
+            # Create menu entry for the specific user
             menu = Menu(user_id=user_id, name=meal_name, day=day, type=meal_time)
             db.session.add(menu)
 
-            # You can re-enable this part if you want to handle menu-ingredient associations
-            # Store ingredients for each meal
-            # for ingredient_name in meal_ingredients:
-            #     ingredient = Ingredient.query.filter_by(name=ingredient_name).first()
-            #     if ingredient:
-            #         menu_ingredient = MenuIngredient(menu_id=menu.id, ingredient_id=ingredient.id)
-            #         db.session.add(menu_ingredient)
+            # Here you can handle menu-ingredient associations if needed
+            # For example, associating ingredients with each meal for the specific user
 
-    # Commit changes to the database
+    # Commit all changes to the database
     db.session.commit()
 
     # Return response

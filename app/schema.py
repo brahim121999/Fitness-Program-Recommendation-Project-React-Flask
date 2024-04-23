@@ -51,7 +51,7 @@ class MenuSchema(ma.ModelSchema):
 class IngredientSchema(ma.ModelSchema):
     class Meta:
         model = Ingredient
-        fields = ('id', 'name')
+        fields = ('id', 'name','user-id')
     #menu_ingredients_relation = ma.Nested('MenuIngredientSchema', many=True)
 
 

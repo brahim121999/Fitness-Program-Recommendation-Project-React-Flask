@@ -89,11 +89,13 @@ class Menu(BaseModel):
 class Ingredient(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     #menu_ingredients_relation = db.relationship('MenuIngredient', backref='ingredient', lazy=True)
 
-    def __init__(self, name, **kwargs):
+    def __init__(self, name,user_id, **kwargs):
         super().__init__(**kwargs)
         self.name = name
+        self.user_id = user_id
 
 
 #class MenuIngredient(BaseModel):
