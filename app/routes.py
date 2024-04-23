@@ -33,6 +33,7 @@ def get_users():
 
 
 @app.route("/user/<int:id>", methods=["GET"])
+@authenticate
 def get_user(id):
     user = User.query.get(id)
     if user:
@@ -43,6 +44,7 @@ def get_user(id):
 
 
 @app.route("/user/<int:id>", methods=["PATCH"])
+@authenticate
 def update_user(id):
     user = User.query.get(id)
     if user:
@@ -57,6 +59,7 @@ def update_user(id):
 
 
 @app.route("/user/<int:id>", methods=["DELETE"])
+@authenticate
 def delete_user(id):
     user = User.query.get(id)
     if user:
@@ -68,6 +71,7 @@ def delete_user(id):
 
 
 @app.route("/session", methods=["POST"])
+@authenticate
 def create_session():
     data = request.json
     new_session = Session(**data)
@@ -86,6 +90,7 @@ def get_sessions():
 
 
 @app.route("/session/<int:id>", methods=["GET"])
+@authenticate
 def get_session(id):
     session = Session.query.get(id)
     if session:
@@ -96,6 +101,7 @@ def get_session(id):
 
 
 @app.route("/session/<int:id>", methods=["PATCH"])
+@authenticate
 def update_session(id):
     session = Session.query.get(id)
     if session:
@@ -110,6 +116,7 @@ def update_session(id):
 
 
 @app.route("/session/<int:id>", methods=["DELETE"])
+@authenticate
 def delete_session(id):
     session = Session.query.get(id)
     if session:
@@ -121,6 +128,7 @@ def delete_session(id):
 
 
 @app.route("/equipment", methods=["POST"])
+@authenticate
 def create_equipment():
     data = request.json
     new_equipment = Equipment(**data)
@@ -131,6 +139,7 @@ def create_equipment():
 
 
 @app.route("/equipment", methods=["GET"])
+@authenticate
 def get_equipments():
     all_equipments = Equipment.query.all()
     result = equipments_schema.dump(all_equipments)
@@ -138,6 +147,7 @@ def get_equipments():
 
 
 @app.route("/equipment/<int:id>", methods=["GET"])
+@authenticate
 def get_equipment(id):
     equipment = Equipment.query.get(id)
     if equipment:
@@ -148,6 +158,7 @@ def get_equipment(id):
 
 
 @app.route("/equipment/<int:id>", methods=["PATCH"])
+@authenticate
 def update_equipment(id):
     equipment = Equipment.query.get(id)
     if equipment:
@@ -162,6 +173,7 @@ def update_equipment(id):
 
 
 @app.route("/equipment/<int:id>", methods=["DELETE"])
+@authenticate
 def delete_equipment(id):
     equipment = Equipment.query.get(id)
     if equipment:
@@ -173,6 +185,7 @@ def delete_equipment(id):
 
 
 @app.route("/menu", methods=["POST"])
+@authenticate
 def create_menu():
     data = request.json
     new_menu = Menu(**data)
@@ -190,6 +203,7 @@ def create_menu():
 
 
 @app.route("/menu/<int:id>", methods=["PATCH"])
+@authenticate
 def update_menu(id):
     menu = Menu.query.get(id)
     if menu:
@@ -213,6 +227,7 @@ def update_menu(id):
 
 
 @app.route("/menu/<int:id>", methods=["DELETE"])
+@authenticate
 def delete_menu(id):
     menu = Menu.query.get(id)
     if menu:
@@ -224,6 +239,7 @@ def delete_menu(id):
 
 
 @app.route("/ingredient", methods=["POST"])
+@authenticate
 def create_ingredient():
     data = request.json
     new_ingredient = Ingredient(**data)
@@ -241,6 +257,7 @@ def create_ingredient():
 
 
 @app.route("/ingredient/<int:id>", methods=["PATCH"])
+@authenticate
 def update_ingredient(id):
     ingredient = Ingredient.query.get(id)
     if ingredient:
@@ -264,6 +281,7 @@ def update_ingredient(id):
 
 
 @app.route("/ingredient/<int:id>", methods=["DELETE"])
+@authenticate
 def delete_ingredient(id):
     ingredient = Ingredient.query.get(id)
     if ingredient:
