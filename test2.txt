@@ -2,91 +2,63 @@
   "objective": "build muscle",
   "training_sessions_day_by_day": {
     "Monday": {
-      "exercises": [
-        {
-          "name": "Kettlebell Swings",
-          "description": "Stand with feet shoulder-width apart, holding the kettlebell with both hands. Bend your knees slightly, then swing the kettlebell between your legs and quickly stand up, swinging it up to chest height. Use your hips to drive the motion."
-        },
-        {
-          "name": "Resistance Band Chest Press",
-          "description": "Anchor the band behind you, hold the ends with both hands. Step forward to create tension. Push your hands forward until your arms are fully extended, then slowly return to the starting position."
-        },
-        {
-          "name": "Jump Rope",
-          "description": "Use the jump rope for a 1-minute intense interval, focusing on speed and footwork. Rest for 30 seconds and repeat."
-        }
-      ]
+      "Kettlebell Swings": "Stand with feet shoulder-width apart, holding a kettlebell with both hands. Swing the kettlebell between your legs and then thrust your hips forward to swing it chest high. Keep your arms straight and core engaged.",
+      "Jump Rope": "Use the jump rope for a fast-paced cardio session. Aim for speed and consistency in your jumps to promote cardiovascular endurance and coordination.",
+      "Resistance Band Squats": "Stand on a resistance band with feet shoulder-width apart, holding the ends of the band with your hands. Perform squats while keeping tension on the band, which helps in muscle strengthening."
     },
     "Wednesday": {
-      "exercises": [
-        {
-          "name": "Kettlebell Goblet Squats",
-          "description": "Hold the kettlebell close to your chest with both hands, feet apart aligned with shoulders. Squat down keeping your back straight, then return to start."
-        },
-        {
-          "name": "Resistance Band Pull-Aparts",
-          "description": "Hold the resistance band with both hands straight in front of you. Pull the band apart while squeezing your shoulder blades together, then slowly return to start."
-        },
-        {
-          "name": "Jump Rope",
-          "description": "Perform 1-minute of high knees using the jump rope to drive your heart rate up, followed by 30 seconds of rest. Repeat."
-        }
-      ]
+      "Kettlebell Deadlifts": "Place the kettlebell on the ground between your feet. Squat down, grab the handle with both hands while keeping your back straight, and lift by extending your hips and knees.",
+      "Resistance Band Push-Ups": "Wrap a resistance band around your back, holding the ends with both hands. Perform push-ups against the resistance to increase upper body strength.",
+      "Core Crunches on Yoga Mat": "Lay down on your yoga mat, hands behind your head. Lift your upper body off the ground by engaging your core, then return slowly."
     },
     "Friday": {
-      "exercises": [
-        {
-          "name": "Kettlebell Deadlifts",
-          "description": "Stand with feet hip-width apart, kettlebell in front of you. Bend at your hips to grip the kettlebell, stand up by extending your hips fully, and then lower back down."
-        },
-        {
-          "name": "Resistance Band Rows",
-          "description": "Secure the band at a low point, hold the ends and sit back slightly. Pull the bands towards your waist, and then extend your arms back out."
-        },
-        {
-          "name": "Jump Rope",
-          "description": "Finish with 1 minute of alternating foot step jump rope, focusing on fast-paced jumps. Rest for 30 seconds and repeat."
-        }
-      ]
+      "Kettlebell Squats": "Hold the kettlebell close to your chest with both hands, feet shoulder-width apart. Perform squats, ensuring to keep your back straight and lowering your body until your thighs are parallel to the floor.",
+      "Resistance Band Rows": "Secure the resistance band around a stable object at waist height. Pull the bands towards your waist while squeezing your shoulder blades together.",
+      "Jump Rope Crossovers": "Include crossovers in your jump rope session to improve agility and coordination."
+    },
+    "Sunday": {
+      "Kettlebell Russian Twists": "Sit on a yoga mat with legs bent, leaning back slightly. Hold the kettlebell with both hands and twist your torso side to side.",
+      "Resistance Band Bicep Curls": "Stand on the resistance band with feet apart, pulling the band upwards by curling your arms.",
+      "High Knees with Jump Rope": "Perform high knees while using the jump rope to incorporate more intense cardio."
     }
   },
   "meals": {
     "Monday": {
-      "Breakfast": "Oatmeal with chopped chicken breast and pepper",
-      "Lunch": "Grilled chicken breast with pepper sprinkled over the top",
-      "Dinner": "Protein-rich yogurt with oatmeal and pepper mixed in"
+      "Breakfast": "Oatmeal with sliced chicken breast and a dash of pepper",
+      "Lunch": "Grilled chicken breast with a side of pepper-seasoned yogurt.",
+      "Dinner": "Scrambled eggs mixed with diced chicken breast and a sprinkle of pepper"
     },
     "Tuesday": {
-      "Breakfast": "Protein-rich yogurt blended with oatmeal and slices of pepper",
-      "Lunch": "Oatmeal bowl topped with sautéed chicken breast and pepper",
-      "Dinner": "Chicken breast stuffed with pepper, served with a side of oats"
+      "Breakfast": "Protein-packed yogurt with minced chicken and pepper",
+      "Lunch": "Peppered chicken omelet with oatmeal.",
+      "Dinner": "Chicken breast slices on a bed of spiced oatmeal"
     },
     "Wednesday": {
-      "Breakfast": "Oatmeal pancakes with pepper and chicken strips",
-      "Lunch": "Chicken salad with chopped peppers and a side of protein-rich yogurt",
-      "Dinner": "Stir-fried chicken and peppers with a side of oatmeal"
+      "Breakfast": "Spicy chicken and egg scramble with a side of protein yogurt",
+      "Lunch": "Sautéed chicken with pepper and oat garnish",
+      "Dinner": "Pepper-seasoned chicken rolled in oats and pan-fried"
     },
     "Thursday": {
-      "Breakfast": "Chicken and pepper omelet with a side of oatmeal",
-      "Lunch": "Yogurt with proteins mixed with finely chopped chicken and pepper",
-      "Dinner": "Baked chicken breast with pepper crust alongside flavored oatmeal"
+      "Breakfast": "Pepper oatmeal with poached eggs",
+      "Lunch": "Chicken salad with pepper and a dollop of protein yogurt",
+      "Dinner": "Egg wrap with diced chicken and a peppery twist"
     },
     "Friday": {
-      "Breakfast": "Oatmeal with protein-rich yogurt and diced pepper",
-      "Lunch": "Pepper stuffed with ground chicken and topped with oatmeal crust",
-      "Dinner": "Grilled chicken breast with oatmeal and pepper salad"
+      "Breakfast": "Pepper-spiced chicken patties with protein yogurt",
+      "Lunch": "Oat-crusted chicken breast with a pepper yogurt sauce",
+      "Dinner": "Stir-fried chicken and eggs with a side of seasoned oatmeal"
     },
     "Saturday": {
-      "Breakfast": "Scrambled eggs (from chicken breast) with pepper and a side of oatmeal",
-      "Lunch": "Protein-rich yogurt parfait layered with oatmeal and pepper",
-      "Dinner": "Chicken wraps using oatmeal pancakes as the base, filled with pepper and diced chicken"
+      "Breakfast": "Omelet with diced chicken, pepper, and a scoop of protein yogurt",
+      "Lunch": "Grilled chicken with a pepper-infused oat salad",
+      "Dinner": "Pan-seared chicken and scrambled eggs with seasoned oats"
     },
     "Sunday": {
-      "Breakfast": "Oatmeal cooked with diced chicken and pepper",
-      "Lunch": "Chicken breast grilled with peppers served with a side of protein yogurt",
-      "Dinner": "Pepper and chicken stew with a side of creamy oatmeal"
+      "Breakfast": "Chicken and pepper omelet with oatmeal",
+      "Lunch": "Cold chicken cuts with spicy yogurt and a side of oats",
+      "Dinner": "Egg fried rice with chicken and a hint of pepper"
     }
   },
-  "ingredients": ["pepper", "chicken breast", "oatmeal", "yogurt with proteins"],
-  "equipment": ["kettlebell", "jump rope", "resistance bands"]
+  "ingredients": ["pepper", "chicken breast", "oatmeal", "eggs", "yogurt with proteins"],
+  "equipment": ["yoga mat", "kettlebell", "jump rope", "resistance bands"]
 }
