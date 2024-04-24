@@ -61,8 +61,8 @@ def login():
         # Exemple :
         # session_token = generate_session_token(user)
         # return jsonify({'message': 'Login successful!', 'status': 200, 'session_token': session_token})
-        login_user(user, remember=remember)
-        print(login_user)
+        #login_user(user, remember=remember)
+        #print(login_user)
         return make_response(jsonify({'message': 'Login successful!', 'status': 200}))
 
     # Si les identifiants sont incorrects

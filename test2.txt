@@ -1,64 +1,72 @@
 {
-  "objective": "build muscle",
+  "objective": "Build Muscle",
   "training_sessions_day_by_day": {
     "Monday": {
-      "Kettlebell Swings": "Stand with feet shoulder-width apart, holding a kettlebell with both hands. Swing the kettlebell between your legs and then thrust your hips forward to swing it chest high. Keep your arms straight and core engaged.",
-      "Jump Rope": "Use the jump rope for a fast-paced cardio session. Aim for speed and consistency in your jumps to promote cardiovascular endurance and coordination.",
-      "Resistance Band Squats": "Stand on a resistance band with feet shoulder-width apart, holding the ends of the band with your hands. Perform squats while keeping tension on the band, which helps in muscle strengthening."
+      "exercises": {
+        "Bench Press": "Use the bench and dumbbells. Perform 4 sets of 8-12 reps.",
+        "Dumbbell Flys": "Lie on the bench with a dumbbell in each hand and perform 3 sets of 10-15 reps.",
+        "Plank": "Use the yoga mat. Hold the plank position for 1 minute, repeat 3 times."
+      }
     },
     "Wednesday": {
-      "Kettlebell Deadlifts": "Place the kettlebell on the ground between your feet. Squat down, grab the handle with both hands while keeping your back straight, and lift by extending your hips and knees.",
-      "Resistance Band Push-Ups": "Wrap a resistance band around your back, holding the ends with both hands. Perform push-ups against the resistance to increase upper body strength.",
-      "Core Crunches on Yoga Mat": "Lay down on your yoga mat, hands behind your head. Lift your upper body off the ground by engaging your core, then return slowly."
+      "exercises": {
+        "Incline Dumbbell Press": "Adjust the bench to an incline and perform 4 sets of 8-12 reps using the dumbbells.",
+        "Dumbbell Pullover": "Lie on the bench with a dumbbell held with both hands. Perform 3 sets of 12 reps.",
+        "Yoga Mat Crunches": "Perform crunches on the yoga mat for 3 sets of 15 reps."
+      }
     },
     "Friday": {
-      "Kettlebell Squats": "Hold the kettlebell close to your chest with both hands, feet shoulder-width apart. Perform squats, ensuring to keep your back straight and lowering your body until your thighs are parallel to the floor.",
-      "Resistance Band Rows": "Secure the resistance band around a stable object at waist height. Pull the bands towards your waist while squeezing your shoulder blades together.",
-      "Jump Rope Crossovers": "Include crossovers in your jump rope session to improve agility and coordination."
+      "exercises": {
+        "Dumbbell Shoulder Press": "Seated on the bench, press dumbbells overhead 4 sets of 10 reps.",
+        "Lateral Raises": "Stand and lift the dumbbells to the side, 3 sets of 12 reps.",
+        "Russian Twists": "Sit on the yoga mat with a dumbbell, and perform twists for 3 sets of 20 reps."
+      }
     },
     "Sunday": {
-      "Kettlebell Russian Twists": "Sit on a yoga mat with legs bent, leaning back slightly. Hold the kettlebell with both hands and twist your torso side to side.",
-      "Resistance Band Bicep Curls": "Stand on the resistance band with feet apart, pulling the band upwards by curling your arms.",
-      "High Knees with Jump Rope": "Perform high knees while using the jump rope to incorporate more intense cardio."
+      "exercises": {
+        "Dumbbell Squat": "Stand and squat with dumbbells in each hand, 4 sets of 10 reps.",
+        "Bench Step-Ups": "Use the bench to step up and down with a dumbbell in each hand, 3 sets of 10 reps per leg.",
+        "Yoga Mat Push-Ups": "Perform push-ups on the yoga mat, 3 sets of 15 reps."
+      }
     }
   },
   "meals": {
     "Monday": {
-      "Breakfast": "Oatmeal with sliced chicken breast and a dash of pepper",
-      "Lunch": "Grilled chicken breast with a side of pepper-seasoned yogurt.",
-      "Dinner": "Scrambled eggs mixed with diced chicken breast and a sprinkle of pepper"
+      "Breakfast": "Tomato omelet (sauté chopped tomatoes in a skillet, add beaten eggs and milk, cook until set)",
+      "Lunch": "Tomato soup (blend tomatoes and pepper with a bit of milk, heat it up)",
+      "Dinner": "Grilled cheese with tomato (sandwich with slices of tomato and cheese, grilled)"
     },
     "Tuesday": {
-      "Breakfast": "Protein-packed yogurt with minced chicken and pepper",
-      "Lunch": "Peppered chicken omelet with oatmeal.",
-      "Dinner": "Chicken breast slices on a bed of spiced oatmeal"
+      "Breakfast": "Milkshake (blend milk with some ice and chopped tomatoes for flavor)",
+      "Lunch": "Stuffed tomatoes (hollow out tomatoes, mix the insides with pepper and cheese, and bake)",
+      "Dinner": "Pepper and tomato salad (slice tomatoes and mix with sliced bell peppers and a dash of pepper)"
     },
     "Wednesday": {
-      "Breakfast": "Spicy chicken and egg scramble with a side of protein yogurt",
-      "Lunch": "Sautéed chicken with pepper and oat garnish",
-      "Dinner": "Pepper-seasoned chicken rolled in oats and pan-fried"
+      "Breakfast": "Tomato and cheese toast (toast slices of tomato with cheese on top)",
+      "Lunch": "Tomato wraps (wrap sliced tomatoes and a sprinkle of pepper in a lettuce leaf)",
+      "Dinner": "Creamy tomato pasta (blend cooked pasta with a sauce made from pureed tomato and milk)"
     },
     "Thursday": {
-      "Breakfast": "Pepper oatmeal with poached eggs",
-      "Lunch": "Chicken salad with pepper and a dollop of protein yogurt",
-      "Dinner": "Egg wrap with diced chicken and a peppery twist"
+      "Breakfast": "Pepper omelet (make omelet using milk, eggs, and finely chopped pepper)",
+      "Lunch": "Tomato cheese bake (layer slices of tomato and cheese, season with pepper, bake until golden)",
+      "Dinner": "Tomato smoothie (blend tomatoes with milk and a hint of pepper)"
     },
     "Friday": {
-      "Breakfast": "Pepper-spiced chicken patties with protein yogurt",
-      "Lunch": "Oat-crusted chicken breast with a pepper yogurt sauce",
-      "Dinner": "Stir-fried chicken and eggs with a side of seasoned oatmeal"
+      "Breakfast": "Cheesy pepper scramble (scramble eggs with milk and diced peppers)",
+      "Lunch": "Tomato salad (chop tomatoes and toss with dressing of milk and ground pepper)",
+      "Dinner": "Tomato pepper soup (puree tomatoes and pepper, simmer with milk)"
     },
     "Saturday": {
-      "Breakfast": "Omelet with diced chicken, pepper, and a scoop of protein yogurt",
-      "Lunch": "Grilled chicken with a pepper-infused oat salad",
-      "Dinner": "Pan-seared chicken and scrambled eggs with seasoned oats"
+      "Breakfast": "Pepper stuffed with scrambled egg (halve pepper, remove seeds, fill with scrambled eggs and milk)",
+      "Lunch": "Tomato milk soup (simmer chopped tomatoes in milk, season with salt and pepper)",
+      "Dinner": "Grilled tomato and pepper sandwich (grill slices of tomato and pepper with cheese between bread slices)"
     },
     "Sunday": {
-      "Breakfast": "Chicken and pepper omelet with oatmeal",
-      "Lunch": "Cold chicken cuts with spicy yogurt and a side of oats",
-      "Dinner": "Egg fried rice with chicken and a hint of pepper"
+      "Breakfast": "Milk porridge (cook any available grain in milk, add diced tomatoes)",
+      "Lunch": "Pepper tomato cheese sticks (alternately thread pieces of cheese, tomato, and pepper on skewers, grill)",
+      "Dinner": "Tomato pepper stir-fry (sauté sliced tomatoes and peppers, season well with ground pepper)"
     }
   },
-  "ingredients": ["pepper", "chicken breast", "oatmeal", "eggs", "yogurt with proteins"],
-  "equipment": ["yoga mat", "kettlebell", "jump rope", "resistance bands"]
+  "ingredients": ["Tomato", "Milk", "Pepper"],
+  "equipment": ["Bench", "Dumbbell", "Yoga Mat"]
 }

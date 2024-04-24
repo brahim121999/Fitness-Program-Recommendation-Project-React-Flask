@@ -25,7 +25,7 @@ def user_interface_route():
 
 
 @app.route('/handle-query', methods=['POST'])
-@login_required
+#@login_required
 def handle_query():
     # Extract user_id and question from the request JSON payload
     #user_id = request.json['user_id']
@@ -35,78 +35,81 @@ def handle_query():
     #print(current_user.id)
     #print(user_id)
 
-    if str(current_user.id) == str(user_id):
-        question = request.json['question']
+    #if str(current_user.id) == str(user_id):
+    question = request.json['question']
 
-        # Fetch the most similar chunks of context for the question
-        context_chunks = pinecone_service.get_most_similar_chunks_for_query(question, PINECONE_INDEX_NAME)
-        prompt = build_prompt(question, context_chunks)
+    # Fetch the most similar chunks of context for the question
+    context_chunks = pinecone_service.get_most_similar_chunks_for_query(question, PINECONE_INDEX_NAME)
+    prompt = build_prompt(question, context_chunks)
 
-        # Get the answer from OpenAI service
-        answer = openai_service.get_llm_answer(prompt)
+    # Get the answer from OpenAI service
+    answer = openai_service.get_llm_answer(prompt)
 
-        # Convert the answer JSON string to a dictionary
-        api_response = json.loads(answer)
+    with open("test2.txt", "w") as my_file:
+        my_file.write(answer)
 
-        # Clear data in tables specific to the provided user_id
-        db.session.execute(delete(Equipment).where(Equipment.user_id == user_id))
-        db.session.execute(delete(Ingredient).where(Ingredient.user_id == user_id))
-        db.session.execute(delete(Session).where(Session.user_id == user_id))
-        db.session.execute(delete(Menu).where(Menu.user_id == user_id))
+    # Convert the answer JSON string to a dictionary
+    api_response = json.loads(answer)
 
-        # Commit the deletion
-        db.session.commit()
+    # Clear data in tables specific to the provided user_id
+    db.session.execute(delete(Equipment).where(Equipment.user_id == user_id))
+    db.session.execute(delete(Ingredient).where(Ingredient.user_id == user_id))
+    db.session.execute(delete(Session).where(Session.user_id == user_id))
+    db.session.execute(delete(Menu).where(Menu.user_id == user_id))
 
-        # Update the user's objective
-        objective = api_response.get('objective', '')
-        user = User.query.get(user_id)
-        if user:
-            user.objective = objective
-            db.session.add(user)
+    # Commit the deletion
+    db.session.commit()
 
-        # Handle training sessions and exercises for the specific user
-        training_sessions = api_response.get('training_sessions_day_by_day', {})
+    # Update the user's objective
+    objective = api_response.get('objective', '')
+    user = User.query.get(user_id)
+    if user:
+        user.objective = objective
+        db.session.add(user)
 
-        for day, exercises in training_sessions.items():
-            # Create session entry for the specific user
-            session = Session(user_id=user_id, day=day, programme=str(exercises))
-            db.session.add(session)
+    # Handle training sessions and exercises for the specific user
+    training_sessions = api_response.get('training_sessions_day_by_day', {})
 
-        # Handle equipment for the specific user
-        equipment = api_response.get('equipment', {})
-        for equipment_description in equipment:
-            new_equipment = Equipment(user_id=user_id, description=equipment_description)
-            db.session.add(new_equipment)
+    for day, exercises in training_sessions.items():
+        # Create session entry for the specific user
+        session = Session(user_id=user_id, day=day, programme=str(exercises))
+        db.session.add(session)
 
-        # Handle meals for the specific user
-        meals = api_response.get('meals', {})
-        ingredients = api_response.get('ingredients', [])
+    # Handle equipment for the specific user
+    equipment = api_response.get('equipment', {})
+    for equipment_description in equipment:
+        new_equipment = Equipment(user_id=user_id, description=equipment_description)
+        db.session.add(new_equipment)
 
-        for ingredient_name in ingredients:
-            # Check if the ingredient already exists for this user
-            ingredient = Ingredient.query.filter_by(name=ingredient_name, user_id=user_id).first()
-            if not ingredient:
-                ingredient = Ingredient(name=ingredient_name, user_id=user_id)
-                db.session.add(ingredient)
+    # Handle meals for the specific user
+    meals = api_response.get('meals', {})
+    ingredients = api_response.get('ingredients', [])
 
-        for day, meals_info in meals.items():
-            for meal_time, meal_name in meals_info.items():
-                # Create menu entry for the specific user
-                menu = Menu(user_id=user_id, name=meal_name, day=day, type=meal_time)
-                db.session.add(menu)
+    for ingredient_name in ingredients:
+        # Check if the ingredient already exists for this user
+        ingredient = Ingredient.query.filter_by(name=ingredient_name, user_id=user_id).first()
+        if not ingredient:
+            ingredient = Ingredient(name=ingredient_name, user_id=user_id)
+            db.session.add(ingredient)
 
-                # Here you can handle menu-ingredient associations if needed
-                # For example, associating ingredients with each meal for the specific user
+    for day, meals_info in meals.items():
+        for meal_time, meal_name in meals_info.items():
+            # Create menu entry for the specific user
+            menu = Menu(user_id=user_id, name=meal_name, day=day, type=meal_time)
+            db.session.add(menu)
 
-        # Commit all changes to the database
-        db.session.commit()
+            # Here you can handle menu-ingredient associations if needed
+            # For example, associating ingredients with each meal for the specific user
 
-        print(current_user.name)
+    # Commit all changes to the database
+    db.session.commit()
 
-        # Return response
-        return jsonify({"question": question, "answer": answer, "status": "Data saved to database successfully"})
-    else:
-        return make_response(jsonify({'message': 'Invalid User ID!', 'status': 404}))
+    #print(current_user.name)
+
+    # Return response
+    return jsonify({"question": question, "answer": answer, "status": "Data saved to database successfully"})
+    #else:
+     #   return make_response(jsonify({'message': 'Invalid User ID!', 'status': 404}))
 
 
 
@@ -132,6 +135,7 @@ def get_user_data(user_id):
         try:
             programme_dict = json.loads(json_string)
             sessions_programme[session.day].append(programme_dict)
+            print('//////////////////////////')
 
         except json.JSONDecodeError:
             print(f"Error decoding JSON for session on day {session.day}: {json_string}")
