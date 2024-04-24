@@ -58,12 +58,14 @@ class Session(BaseModel):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     programme = db.Column(db.Text)
     day = db.Column(db.Text)
+    description = db.Column(db.Text)
 
-    def __init__(self, user_id, programme=None,day=None, **kwargs):
+    def __init__(self, user_id, programme=None,day=None,description=None, **kwargs):
         super().__init__(**kwargs)
         self.user_id = user_id
         self.programme = programme
         self.day = day
+        self.description = description
 
 
 class Equipment(BaseModel):

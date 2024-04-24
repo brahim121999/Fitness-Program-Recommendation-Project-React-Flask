@@ -25,7 +25,7 @@ users_schema = UserSchema(many=True)
 class SessionSchema(ma.ModelSchema):
     class Meta:
         model = Session
-        fields = ('id', 'user_id', 'programme','day')
+        fields = ('id', 'user_id', 'programme','day','description')
 
 
 session_schema = SessionSchema()

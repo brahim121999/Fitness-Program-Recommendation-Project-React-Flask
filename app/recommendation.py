@@ -67,16 +67,18 @@ def handle_query():
         user.objective = objective
         db.session.add(user)
 
-    # Handle training sessions and exercises for the specific user
-    training_sessions = api_response.get('training_sessions_day_by_day', {})
+    training_sessions = api_response.get('exercises', {})
 
-    for day, exercises in training_sessions.items():
-        # Create session entry for the specific user
-        session = Session(user_id=user_id, day=day, programme=str(exercises))
-        db.session.add(session)
+    for day, exercice_info in training_sessions.items():
+        for exercice_name, exercice_description in exercice_info.items():
+            # Create menu entry for the specific user
+            session = Session(user_id=user_id,day=day,programme=exercice_name,description=exercice_description )  #(user_id=user_id, name=meal_name, day=day, type=meal_time)
+            db.session.add(session)
+            # Here you can handle menu-ingredient associations if needed
+            # For example, associating ingredients with each meal for the specific user
 
     # Handle equipment for the specific user
-    equipment = api_response.get('equipment', {})
+    equipment = api_response.get('equipments', {})
     for equipment_description in equipment:
         new_equipment = Equipment(user_id=user_id, description=equipment_description)
         db.session.add(new_equipment)
@@ -104,8 +106,6 @@ def handle_query():
     # Commit all changes to the database
     db.session.commit()
 
-    #print(current_user.name)
-
     # Return response
     return jsonify({"question": question, "answer": answer, "status": "Data saved to database successfully"})
     #else:
@@ -130,18 +130,8 @@ def get_user_data(user_id):
 
     sessions_programme = defaultdict(list)
     for session in sessions:
-        json_string = session.programme.replace("'", '"')
-
-        try:
-            programme_dict = json.loads(json_string)
-            sessions_programme[session.day].append(programme_dict)
-            print('//////////////////////////')
-
-        except json.JSONDecodeError:
-            print(f"Error decoding JSON for session on day {session.day}: {json_string}")
-            continue
-
-    sessions_programme = dict(sessions_programme)
+        session_dict = {session.programme: session.description}
+        sessions_programme[session.day].append(session_dict)
 
     equipment = [equipment.description for equipment in equipments]
 
