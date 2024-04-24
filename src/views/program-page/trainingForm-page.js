@@ -3,57 +3,75 @@ import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLa
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
+ 
 const ingredientsList = [
-    'Légumes frais (carottes, brocolis, épinards, etc.)',
-    'Fruits frais (pommes, bananes, fraises, etc.)',
-    'Viandes maigres (poulet, dinde, poisson, etc.)',
-    'Produits laitiers (yaourt, fromage, lait, etc.)',
-    'Céréales et grains (riz, pâtes, quinoa, etc.)',
-    'Noix et graines (amandes, noix, graines de chia, etc.)',
-    'Légumineuses (haricots, lentilles, pois chiches, etc.)',
-    "Huiles et vinaigres (huile d'olive, vinaigre balsamique, etc.)",
-    'Épices et assaisonnements (sel, poivre, origan, etc.)',
+    'Tomato',
+    'Milk',
+    'Pepper',
+    'Chicken Breast',
+    'Oatmeal',
+    'Eggs',
+    'Yogurt with Proteins',
+    'Black Chocolate',
+    'Sheep Meat',
+    'Onion',
+    'Pasta',
+    'Rice',
+    'Couscous',
+    'Broccoli',
+    'Spinach',
+    'Sweet Potato',
+    'Quinoa',
+    'Salmon',
+    'Avocado',
+    'Nuts',
+    'Cottage Cheese',
+    'Cheese'
   ];
-  
+ 
   const equipmentList = [
-    'Haltères',
-    'Kettlebells',
-    'Barres de poids',
-    'Banc de musculation',
-    'Tapis de yoga',
-    'Corde à sauter',
-    'Ballon de stabilité',
-    'Bande de résistance',
-    'Machine elliptique',
-    'Tapis de course',
-    'Vélo stationnaire',
-    'Step aérobique',
+    'Bench',
+    'Dumbbell',
+    'Yoga Mat',
+    'Kettlebell',
+    'Jump Rope',
+    'Resistance Bands',
+    'Medicine Ball'
   ];
-  
-
+ 
+ 
 const TrainingForm = () => {
   const navigate = useNavigate();
   const [objective, setObjective] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [materials, setMaterials] = useState([]);
   const [trainingTimes, setTrainingTimes] = useState('');
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('////////');
     try {
       // Envoi des données au backend avec Axios
-      const response = await axios.post('http://127.0.0.1:5000/handle-query', {
-        question: {
-          objective, 
-          ingredients, 
-          materials, 
-          trainingTimes, 
+      const response = axios.post(
+        'http://127.0.0.1:5000/handle-query',
+        {
+            question: {
+                objective,
+                ingredients,
+                materials,
+                trainingTimes,
+            },
+            user_id: "2",
         },
-        user_id: "1", 
-      });
+        {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+    );
+      console.log("question");
       console.log('Réponse du serveur:', response.data);
-      toast.success('Connexion réussie ! Bienvenue à bord.');
+      toast.success('Données envoyées avec succès !');
       navigate('/');
       // Réinitialiser le formulaire après soumission réussie si nécessaire
       setObjective('');
@@ -61,10 +79,14 @@ const TrainingForm = () => {
       setMaterials([]);
       setTrainingTimes('');
     } catch (error) {
-      console.error('Erreur lors de la soumission du formulaire:', error);
-    }
+      if (error.response) {
+          console.error('Erreur du serveur:', error.response.status, error.response.data);
+      } else {
+          console.error('Erreur lors de la soumission du formulaire:', error);
+      }
+  }
   };
-
+ 
   const handleIngredientChange = (event) => {
     const { value } = event.target;
     setIngredients(
@@ -73,7 +95,7 @@ const TrainingForm = () => {
         : [...ingredients, value]
     );
   };
-
+ 
   const handleEquipmentChange = (event) => {
     const { value } = event.target;
     setMaterials(
@@ -82,7 +104,7 @@ const TrainingForm = () => {
         : [...materials, value]
     );
   };
-
+ 
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
@@ -100,9 +122,9 @@ const TrainingForm = () => {
                 value={objective}
                 onChange={(e) => setObjective(e.target.value)}
               >
-                <MenuItem value="Perte de poids">Perte de poids</MenuItem>
-                <MenuItem value="Gain de masse musculaire">Gain de masse musculaire</MenuItem>
-                <MenuItem value="Amélioration de l'endurance">Amélioration de l'endurance</MenuItem>
+                <MenuItem value="Lose weight">Lose weight</MenuItem>
+                <MenuItem value="Build Muscle">Build Muscle</MenuItem>
+                <MenuItem value="Improve Endurance">Improve Endurance</MenuItem>
               </TextField>
             </FormControl>
           </Grid>
@@ -144,9 +166,13 @@ const TrainingForm = () => {
                 value={trainingTimes}
                 onChange={(e) => setTrainingTimes(e.target.value)}
               >
-                <MenuItem value="1">1 fois par semaine</MenuItem>
-                <MenuItem value="2">2 fois par semaine</MenuItem>
-                <MenuItem value="3">3 fois par semaine</MenuItem>
+                <MenuItem value="1">1</MenuItem>
+                <MenuItem value="2">2</MenuItem>
+                <MenuItem value="3">3</MenuItem>
+                <MenuItem value="4">4</MenuItem>
+                <MenuItem value="5">5</MenuItem>
+                <MenuItem value="6">6</MenuItem>
+                <MenuItem value="7">7</MenuItem>
                 {/* Ajoutez plus d'options selon vos besoins */}
               </TextField>
             </FormControl>
@@ -161,6 +187,5 @@ const TrainingForm = () => {
     </Box>
   );
 };
-
+ 
 export default TrainingForm;
-
