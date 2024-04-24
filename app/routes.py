@@ -7,19 +7,21 @@ from functools import wraps
 from flask import request, jsonify
 from flask_mail import Mail, Message
 from flask_login import login_user,login_required,logout_user
-from flask_login import LoginManager
+#from flask_login import LoginManager,current_user
+#from flask_jwt_extended import create_access_token ,unset_jwt_cookies , get_jwt,get_jwt_identity
+import json
+from datetime import datetime, timedelta, timezone
 
-login_manager = LoginManager()
-login_manager.login_view = 'login'
-login_manager.init_app(app)
+#login_manager = LoginManager()
+#login_manager.login_view = 'login'
+#login_manager.init_app(app)
 
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    # since the user_id is just the primary key of our user table, use it in the query for the user
-    print(user_id)
-    return User.query.get(int(user_id))
+#@login_manager.user_loader
+#def load_user(user_id):
+    #print(user_id,"++++++++++++++")
+    #return User.query.get(int(user_id))
 
 api_blueprint = Blueprint('api', __name__)
 mail = Mail()
@@ -40,18 +42,42 @@ def send_password_reset_email(user):
     # Envoyez l'e-mail
     mail.send(msg)
 
-@app.route('/logout')
-@login_required
+#@app.route('/logout')
+#@login_required
+#def logout():
+ #   print("//////////////",current_user.id)
+  #  logout_user()
+   # return make_response(jsonify({'message': 'Logout successful!', 'status': 200}))
+
+#@app.after_request
+#def refresh_expiring_jwts(response):
+#    try:
+#        exp_timestamp = get_jwt()["exp"]
+#        now = datetime.now(timezone.utc)
+#        target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+#        if target_timestamp > exp_timestamp:
+#            access_token = create_access_token(identity=get_jwt_identity())
+#            data = response.get_json()
+#            if type(data) is dict:
+#                data["access_token"] = access_token
+#                response.data = json.dumps(data)
+#        return response
+#    except (RuntimeError, KeyError):
+        # Case where there is not a valid JWT. Just return the original respone
+#        return response
+
+@app.route("/logout", methods=["POST"])
 def logout():
-    logout_user()
-    return make_response(jsonify({'message': 'Logout successful!', 'status': 200}))
+    response = jsonify({"msg": "logout successful"})
+    #unset_jwt_cookies(response)
+    return response
 
 @app.route("/login", methods=["POST"])
 def login():
     data = request.json
     email = data.get('email')
     password = data.get('password')
-    remember = True
+    #remember = False
 
     # Vérifiez les identifiants de connexion, par exemple :
     user = User.query.filter_by(email=email).first()
@@ -61,9 +87,13 @@ def login():
         # Exemple :
         # session_token = generate_session_token(user)
         # return jsonify({'message': 'Login successful!', 'status': 200, 'session_token': session_token})
-        #login_user(user, remember=remember)
+        #login_user(user) #remember=remember)
         #print(login_user)
+        #print("current_user.id == ",current_user.id)
+        print("user_id == ",user.id)
+        #access_token = create_access_token(identity=user.id)
         return make_response(jsonify({'message': 'Login successful!', 'status': 200}))
+
 
     # Si les identifiants sont incorrects
     return make_response(jsonify({'message': 'Invalid email or password!', 'status': 401}))

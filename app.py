@@ -8,9 +8,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
-    # Other app setup and routes...
-
 @app.before_first_request
 def create_tables():
     print("Creating database tables...")

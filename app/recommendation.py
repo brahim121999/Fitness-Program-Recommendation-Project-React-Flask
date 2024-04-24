@@ -13,15 +13,16 @@ import json
 from app.routes import authenticate
 from collections import defaultdict
 from flask_login import login_required, current_user
+#from flask_jwt_extended import  jwt_required
 
 # Sample index name since we're only creating a single index
 PINECONE_INDEX_NAME = 'bob7'
 
 user_interface = Blueprint('user_interface', __name__)
 
-@user_interface.route('/user-interface', methods=['GET'])
-def user_interface_route():
-    return render_template('index.html')
+#@user_interface.route('/user-interface', methods=['GET'])
+#def user_interface_route():
+ #   return render_template('index.html')
 
 
 @app.route('/handle-query', methods=['POST'])
@@ -35,7 +36,7 @@ def handle_query():
     #print(current_user.id)
     #print(user_id)
 
-    #if str(current_user.id) == str(user_id):
+    #if int(current_user.id) == int(user_id):
     question = request.json['question']
 
     # Fetch the most similar chunks of context for the question
@@ -114,13 +115,21 @@ def handle_query():
 
 
 @app.route('/get-user-data/<int:user_id>', methods=['GET'])
+#@login_required
+#@jwt_required()
 def get_user_data(user_id):
+
+    #print("current user id == ",current_user.id)
+    #print("user_id == ",user_id)
+
+    #if int(user_id) == int(current_user.id) :
     user = User.query.get(user_id)
 
     if not user:
         return jsonify({"error": "User not found"}), 404
 
     sessions = Session.query.filter_by(user_id=user_id).all()
+    #print(sessions)
 
     equipments = Equipment.query.filter_by(user_id=user_id).all()
 
@@ -152,6 +161,8 @@ def get_user_data(user_id):
     }
 
     return jsonify(response_data)
+    #else:
+     #   return make_response(jsonify({'message': 'Invalid User ID!', 'status': 404}))
 
 
 

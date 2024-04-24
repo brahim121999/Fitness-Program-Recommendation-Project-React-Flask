@@ -1,110 +1,54 @@
 {
-"objective": "Lose weight",
+"objective": "lose weight",
 "exercises": {
-"Monday": {
-"Dumbbell Squat": "Stand with feet hip-width apart holding dumbbells at your sides. Squat down by bending your knees and pushing hips back. Keep chest up and knees behind toes. Rise to start position.",
-"Bench Press": "Lie on bench with dumbbells in hands and feet flat on the floor. Push dumbbells up until arms are extended over chest, then lower back to start.",
-"Jump Rope": "Jump rope for 1 minute. Focus on staying light on the feet and maintaining a steady pace."
-},
-"Tuesday": {
-"Kettlebell Swing": "Stand with feet slightly wider than hip-width, holding kettlebell with both hands. Bend knees slightly, hinge at hips to swing kettlebell back between legs, then thrust hips forward to swing it up to chest level.",
-"Plank with Dumbbell Row": "Get into plank position with dumbbells in hands. Pull one dumbbell towards your hip while stabilizing your body with the other arm. Repeat on other side.",
-"Medicine Ball Slam": "Stand with feet shoulder-width apart holding medicine ball. Lift ball overhead, then slam it down to the ground, squatting to follow through."
-},
-"Wednesday": {
-"Dumbbell Lunge": "Step forward with one leg, lowering your hips until both knees are bent at about a 90-degree angle. Make sure your front knee is directly above your ankle. Push back up to start position and repeat with other leg.",
-"Resistance Band Pull Apart": "Grip a resistance band with both hands and arms stretched out in front. Draw the band towards your chest by pulling arms apart, squeezing shoulder blades together.",
-"Yoga Cool Down": "Perform a series of yoga stretches on the yoga mat to enhance flexibility and cool down."
-},
-"Thursday": {
-"Russian Twist with Medicine Ball": "Sit on the floor with knees bent, feet lifted slightly. Hold medicine ball with both hands. Twist torso to one side and touch the ball to the floor. Twist to the other side.",
-"Deadlift with Kettlebell": "Stand with feet hip-width apart, kettlebell in front of you. Bend at hips and knees to lower down and grip kettlebell. Keep back straight and lift kettlebell by extending hips and knees.",
-"Bicycle Crunches": "Lie on your back with hands behind your head and legs in tabletop position. Alternate touching opposite elbow to opposite knee, extending other leg."
-},
-"Friday": {
-"Shoulder Press with Dumbbells": "Sit or stand holding dumbbells at shoulder height with palms facing forward. Press dumbbells upward until arms are extended overhead. Lower slowly back to start.",
-"Single Leg Deadlift with Kettlebell": "Stand on one leg, kettlebell in opposite hand. Bend at hip to lower kettlebell towards ground, lifting free leg back for balance. Return to start and switch sides.",
-"Yoga Mat Core Workout": "Perform a series of core strengthening exercises like planks and leg raises on the yoga mat."
-},
-"Saturday": {
-"Chest Fly with Dumbbells on Bench": "Lie on bench with dumbbells extended above chest. Slowly lower arms to sides, keeping slight bend in elbows. Squeeze chest to bring weights back to start.",
-"Squat Thrusts": "Start in a standing position, drop into a squat with hands on the ground, then kick feet back into a plank position. Immediately return feet to squat position and stand up.",
-"Jumping Jacks": "Perform jumping jacks for 2 minutes to raise heart rate and enhance endurance."
-},
-"Sunday": {
-"Kettlebell Clean and Press": "Start with kettlebell between feet. Squat to lift it to shoulder, then stand and press it overhead. Repeat, alternating arms.",
-"Leg Raises": "Lie flat on your back on yoga mat. Lift legs straight up to the ceiling, then lower them back down without touching the floor.",
-"Resistance Band Bicep Curls": "Stand on resistance band with feet shoulder-width apart. Hold one end in each hand, arms extended. Curl hands towards shoulders, then lower."
-}
+  "Day 1": {
+    "Exercise 1": "Dumbbell Squats - Holding a dumbbell in each hand, stand with your feet shoulder-width apart. Lower your body into a squat position, keeping your back straight and knees behind your toes. Push through your heels to return to a standing position.",
+    "Exercise 2": "Yoga Mat Plank - Place a yoga mat on the floor. Start in a push-up position but rest your forearms on the mat. Keep your body in a straight line from head to heels. Hold this position for as long as you can, aiming for 30 seconds to one minute.",
+    "Exercise 3": "Dumbbell Shoulder Press - Stand with feet shoulder-width apart and a dumbbell in each hand, raise your arms above your shoulders. Press the dumbbells upwards until your arms are fully extended above your head. Slowly lower them back after a short pause."
+  },
+  "Day 2": {
+    "Exercise 1": "Dumbbell Lunges - Step forward with one leg and lower your hips to drop your back knee toward the floor. Keep your front knee directly above your ankle and your back knee an inch off the floor. Push back to the starting position and switch legs.",
+    "Exercise 2": "Yoga Mat Cobra Pose - Lie facedown on the mat with legs extended, palms planted on either side of your hips. Push through your palms, lifting your chest off the floor. Pull your shoulders back and hold for a few breaths.",
+    "Exercise 3": "Single-arm Dumbbell Rows - Bend slightly at the waist so your body is almost parallel to the floor. Hold a dumbbell in one hand, arm extended, and pull it back toward your hip. Return to start and repeat on the other side."
+  }
 },
 "meals": {
-"Monday": {
-"breakfast": "Scrambled Eggs with Spinach",
-"lunch": "Chicken Breast with Quinoa and Broccoli",
-"dinner": "Salmon with Sweet Potato and Asparagus"
+  "Monday": {
+    "Breakfast": "Scrambled eggs and avocado",
+    "Lunch": "Grilled salmon with peppered avocado slices",
+    "Dinner": "Pepper salmon salad with milk dressing"
+  },
+  "Tuesday": {
+    "Breakfast": "Avocado and pepper smoothie with milk",
+    "Lunch": "Pepper wrapped in smoked salmon",
+    "Dinner": "Salmon soup with milk and diced avocado"
+  },
+  "Wednesday": {
+    "Breakfast": "Pepper omelet with milk",
+    "Lunch": "Salmon avocado sushi rolls",
+    "Dinner": "Avocado stuffed with peppered salmon"
+  },
+  "Thursday": {
+    "Breakfast": "Avocado milkshake",
+    "Lunch": "Salmon tacos with pepper salsa",
+    "Dinner": "Baked salmon with avocado and pepper slices"
+  },
+  "Friday": {
+    "Breakfast": "Pepper and salmon frittata",
+    "Lunch": "Salmon with avocado cream sauce",
+    "Dinner": "Grilled salmon with steamed peppers and avocado sauce"
+  },
+  "Saturday": {
+    "Breakfast": "Milk smoothie with avocado and pepper",
+    "Lunch": "Pepper salmon pasta",
+    "Dinner": "Cold salmon salad with avocado and peppers"
+  },
+  "Sunday": {
+    "Breakfast": "Avocado toast with pepper flakes",
+    "Lunch": "Salmon cakes with pepper dip",
+    "Dinner": "Avocado and salmon stir-fry with peppers"
+  }
 },
-"Tuesday": {
-"breakfast": "Oatmeal with Nuts and Black Chocolate shavings",
-"lunch": "Pasta with Tomato Sauce and Cheese",
-"dinner": "Sheep Meat with Couscous and Spinach"
-},
-"Wednesday": {
-"breakfast": "Cottage Cheese with Sliced Avocado and Pepper",
-"lunch": "Rice with Grilled Chicken Breast and Broccoli",
-"dinner": "Omelette with Onion, Tomato, and Cheese"
-},
-"Thursday": {
-"breakfast": "Yogurt with Proteins mixed with Oatmeal and Pear",
-"lunch": "Sweet Potato stuffed with Cottage Cheese and Nuts",
-"dinner": "Grilled Salmon with Spinach Salad"
-},
-"Friday": {
-"breakfast": "Fried Eggs with Avocado on Toast",
-"lunch": "Chicken Breast Salad with Mixed Greens and Quinoa",
-"dinner": "Pasta with Tomato Sauce and Broiled Cheese"
-},
-"Saturday": {
-"breakfast": "Smoothie with Milk, Yogurt with Proteins, and Black Chocolate",
-"lunch": "Rice with Sauteed Veggies(Mushrooms, Broccoli)", 
-"dinner": "Baked Sweet Potato with Grilled Salmon and Asparagus"
-},
-"Sunday": {
-"breakfast": "Omelette with Tomatoes, Onions, and Cheese",
-"lunch": "Quinoa Salad with Chopped Nuts, Avocado, and Sliced Chicken Breast",
-"dinner": "Pasta with Grilled Sheep Meat and Steamed Broccoli"
-}
-},
-"ingredients": [
-"Tomato",
-"Milk",
-"Pepper",
-"Chicken Breast",
-"Oatmeal",
-"Eggs",
-"Yogurt with Proteins",
-"Black Chocolate",
-"Sheep Meat",
-"Onion",
-"Pasta",
-"Rice",
-"Couscous",
-"Broccoli",
-"Spinach",
-"Sweet Potato",
-"Quinoa",
-"Salmon",
-"Avocado",
-"Nuts",
-"Cottage Cheese",
-"Cheese",
-"Bell Pepper"],
-"equipments": [
-"Bench",
-"Dumbbell",
-"Yoga Mat",
-"Kettlebell",
-"Jump Rope",
-"Resistance Bands",
-"Medicine Ball"
-]
+"ingredients": ["milk", "pepper", "salmon", "avocado"],
+"equipments": ["dumbbell", "yoga mat"]
 }
