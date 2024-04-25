@@ -13,7 +13,7 @@ import {
   Box
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+ 
 // Composant pour l'accordéon des équipements
 const EquipmentAccordion = ({ equipments }) => (
   <Accordion>
@@ -31,7 +31,7 @@ const EquipmentAccordion = ({ equipments }) => (
     </AccordionDetails>
   </Accordion>
 );
-
+ 
 // Composant pour l'accordéon des ingrédients
 const IngredientAccordion = ({ ingredients }) => (
   <Accordion>
@@ -49,7 +49,7 @@ const IngredientAccordion = ({ ingredients }) => (
     </AccordionDetails>
   </Accordion>
 );
-
+ 
 // Composant pour l'accordéon des menus
 const MenuAccordion = ({ menus }) => (
   <Accordion>
@@ -77,9 +77,37 @@ const MenuAccordion = ({ menus }) => (
     </AccordionDetails>
   </Accordion>
 );
-
-// Composant pour l'accordéon des programmes d'entraînement
+ 
+// Composant pour l'accordéon des menus
 const SessionAccordion = ({ sessions_programme }) => (
+  <Accordion>
+    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+      <Typography variant="h4">Entraînement de la Semaine</Typography>
+    </AccordionSummary>
+    <AccordionDetails>
+      {Object.entries(sessions_programme).map(([day, exercices]) => (
+        <div key={day}>
+          <Typography variant="subtitle1">{day}</Typography>
+          <List>
+            {exercices.map((exercice, exerciceIndex) => (
+              <ListItem key={exerciceIndex}>
+                {Object.entries(exercice).map(([exerciceType, description], descriptionIndex) => (
+                  <ListItemText
+                    key={descriptionIndex}
+                    primary={`${exerciceType}: ${description}`}
+                  />
+                ))}
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      ))}
+    </AccordionDetails>
+  </Accordion>
+);
+ 
+// Composant pour l'accordéon des programmes d'entraînement
+/*const SessionAccordion = ({ sessions_programme }) => (
   <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography variant="h4">Programmes d'Entraînement</Typography>
@@ -93,12 +121,14 @@ const SessionAccordion = ({ sessions_programme }) => (
               </Typography>
             );
           }
-
+ 
           return (
             <div key={day}>
               <Typography variant="subtitle1">{day}</Typography>
               <List>
                 {sessions.map((session, sessionIndex) => {
+                  //console.log(session);
+                  console.log(sessionIndex);
                   if (!session.Exercises || !Array.isArray(session.Exercises)) {
                     return (
                       <ListItem key={sessionIndex}>
@@ -106,7 +136,7 @@ const SessionAccordion = ({ sessions_programme }) => (
                       </ListItem>
                     );
                   }
-
+ 
                   return (
                     <React.Fragment key={sessionIndex}>
                       {session.Exercises.map((ex, exerciseIndex) => (
@@ -126,40 +156,43 @@ const SessionAccordion = ({ sessions_programme }) => (
         })}
       </AccordionDetails>
     </Accordion>
-);
-
+);*/
+ 
 function Recommandation() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/get-user-data/1');
+        const userId = 2;
+        const url = `http://127.0.0.1:5000/get-user-data/${userId}`;
+        const response = await axios.get(url);
         console.log(response.data)
         setData(response.data);
         setLoading(false);
       } catch (err) {
         setError(err.message);
         setLoading(false);
+        console.log(err);
       }
     };
-
+ 
     fetchData();
   }, []); // Le tableau vide signifie que cet effet se produit au chargement du composant
-
+ 
   if (loading) {
     return <Typography>Chargement...</Typography>;
   }
-
+ 
   if (error) {
     return <Typography>Erreur : {error}</Typography>;
   }
   if (!data) {
     return <Typography>Pas de données disponibles</Typography>;
   }
-
+ 
   return (
     <Container>
     <Box my={4}>
@@ -167,14 +200,14 @@ function Recommandation() {
         Programme de {data.user}
       </Typography>
     </Box>
-
+ 
     <Box mt={10}>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <SessionAccordion sessions_programme={data.sessions_programme} />
           <EquipmentAccordion equipments={data.equipments} />
         </Grid>
-
+ 
         <Grid item xs={12} sm={6}>
           <MenuAccordion menus={data.menus} />
           <IngredientAccordion ingredients={data.ingredients} />
@@ -184,5 +217,5 @@ function Recommandation() {
   </Container>
   );
 }
-
+ 
 export default Recommandation;
